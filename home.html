@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuyTickets - by MauroPepa</title>
+    <link rel="icon" href="img/logoSiames.svg">
+    <link rel="stylesheet" href="CSS/homeStyle/homeStyle.css">
+
+    <!--FontAwesom-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+</head>
+<body>
+
+    <!--HomeMenu-->
+    <main>
+        <div class="background">
+
+            <div class="bubbleFrames">
+                <div class="bubbles">
+                    <!--MakeXnum-<Span>bubbles-->
+            </div>
+            </div>
+            <div class="coverPageUI">
+            <div class="music-player">
+                <div class="container">
+                    <div class="album-art">
+                        <div class="current-info">
+                            <ul>
+                                <li class="song-title"><span><i class="fa-solid fa-music" style="color: #ffffff;"></i></span>no lullaby</li>
+                                <li class="song-album"><span><i class="fa-solid fa-compact-disc" style="color: #ffffff;"></i></span>home</li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    
+                <div class="controls">
+
+                    <div class="special-buttons">
+                        <a href="#" class="prev"><i class="fa-solid fa-download"></i></a>
+                        
+                        <div class="circle">
+                            <a href="#" class="prev"><i class="fa-solid fa-backward-step"></i></a>
+                            <a href="#" id="playButton" class="play"><i class="fa-solid fa-play"></i></a>
+                            <a href="#" class="next"><i class="fa-solid fa-forward-step"></i></a>
+                        </div>
+                        
+                        <a href="#" class="prev"><i class="fa-solid fa-bars"></i></a>
+                    </div>
+
+
+                    <div class="time">
+                        <div class="data">
+                            <span class="songNumber">0</span>
+                            <span class="currentTime"><span class="start">1:14</span> / <span class="end">3:14</span></span>
+                        </div>        
+
+                        <div class="progress">
+                            <div id="timeBar" class="bar"><input type="range" class="bar"  min="0" max="1" step="0.1" value="0.5" data-css="0.5"></div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="action-button">
+
+                        <span>
+                        <a href="#"><i class="fa-regular fa-heart"></i></a>
+                        <a href="#"><i class="fa-solid fa-shuffle"></i></a>
+                        <a href="#"><i class="fa-solid fa-repeat"></i></a>
+                        </span>
+                        
+                        <span>
+                        <a href="#" class="volMin"><i class="fa-solid fa-volume-low"></i></a>
+                        <input type="range" class="volume"  min="0" max="1" step="0.1" value="0.5" data-css="0.5">
+                        </span>
+
+                    </div>
+                    
+
+                </div>
+                
+
+            </div>
+        </div>
+
+            <!--Wolf-->
+    <div class="wolf"><img src="img/wolf.svg" alt=""></div>
+
+    </div>
+
+
+    <!--Music-->
+    <audio id="mysong">
+        <source src="songs/noLullaby.mp3" type="audio/mp3">
+    </audio>
+    
+    </div>
+    </main>
+
+    <!--bubbleScript-->
+    <script src="js/bubble.js"></script>
+
+    <!--mp3Script-->
+    <script src="js/controlmp3.js"></script>
+
+</body>
+</html>
