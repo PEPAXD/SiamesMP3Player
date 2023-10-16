@@ -8,18 +8,15 @@ const songTitleElement = document.getElementById("songTitle");
 const songAlbumElement = document.getElementById("songAlbum");
 const artSong = document.querySelector(".album-art");
 
-// Manejadores de eventos para los botones
-playButton.addEventListener("click", togglePlayPause);
-nextButton.addEventListener("click", playNextSong);
-prevButton.addEventListener("click", playPrevSong);
-
-
 // Variables para rastrear el estado de reproducción
 let isPlaying = false;
 let currentSongIndex = 0;
 
 // CallFunction´s
 loadSong(currentSongIndex);
+playButton.addEventListener("click", togglePlayPause);
+nextButton.addEventListener("click", playNextSong);
+prevButton.addEventListener("click", playPrevSong);
 
 mysong.addEventListener('ended', function () {
     playNextSong();

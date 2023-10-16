@@ -102,9 +102,9 @@
 
                 position:relative;
     
-                width:35%;
+                max-width:35%;
                 height:80%;
-    
+
                 margin-left: 10%;
                 border-radius: 0.5rem;
                 
@@ -322,3 +322,21 @@
             z-index: 2;
         }
     }
+
+/* Movile */
+@media (max-width: 768px) {
+    .wolf {
+        display: none;
+    }
+
+    .coverPageUI{
+        justify-content: center;
+
+        .music-player {
+            width: 80% !important;
+            max-width: none !important;
+            margin: 0 auto !important;
+        }
+    
+    }
+}
