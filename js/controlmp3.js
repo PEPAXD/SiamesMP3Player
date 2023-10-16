@@ -18,48 +18,57 @@ prevButton.addEventListener("click", playPrevSong);
 let isPlaying = false;
 let currentSongIndex = 0;
 
+// CallFunction´s
 loadSong(currentSongIndex);
+
+mysong.addEventListener('ended', function () {
+    playNextSong();
+    togglePlayPause();
+});
 
 // PAUSE / PLAY
 function togglePlayPause() {
-    if (isPlaying) {
-        mysong.pause();
-        playButton.innerHTML = '<i class="fa-solid fa-play"></i>';
-    } else {
+    if (mysong.paused) {
         mysong.play();
         playButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    } else {
+        mysong.pause();
+        playButton.innerHTML = '<i class="fa-solid fa-play"></i>';
     }
-    isPlaying = !isPlaying;
 }
 
 // NEXT
 function playNextSong() {
     currentSongIndex = (currentSongIndex + 1) % allMusic.length;
     loadSong(currentSongIndex);
-    mysong.play();
-
 }
 
 // PREV
 function playPrevSong() {
     currentSongIndex = (currentSongIndex - 1 + allMusic.length) % allMusic.length;
     loadSong(currentSongIndex);
-    mysong.play();
 }
 
 // LoadSong
 function loadSong(index) {
-    const song = allMusic[index];
-    mysong.src = `songs/${song.src}.mp3`;
-    playButton.innerHTML = '<i class="fa-solid fa-play"></i>';
-    isPlaying = false;
-    console.log(`Play: ${song.name}`);
 
-    //update DataSong
+    //CHECK MUSIC
+    const song = allMusic[index];
+    const wasPlaying = !mysong.paused;
+    mysong.src = `songs/${song.src}.mp3`;
+    isPlaying = wasPlaying; 
+
+    //Dont STOP MUSIC
+    if (isPlaying) {
+        mysong.play();
+    }
+
+    // Update DataSong
     songTitleElement.innerHTML = `<span><i class="fa-solid fa-music" style="color: #ffffff;"></i></span>${song.name}`;
     songAlbumElement.innerHTML = `<span><i class="fa-solid fa-compact-disc" style="color: #ffffff;"></i></span>${song.disc}`;
+    playButton.innerHTML = isPlaying ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
     artSong.style.backgroundImage = `url('DiscArt/${song.art}')`;
 
+    //PRINT TERMINAL <--PLAY:SONG-->
+    console.log(`Play: ${song.name}`);
 }
-
-
