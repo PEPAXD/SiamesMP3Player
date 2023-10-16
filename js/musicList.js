@@ -7,9 +7,9 @@ let allMusic = [
 },
 {
     name: "the wolf",
-    art:  "theWolf.jpg",
+    art:  "TheWolf.jpg",
     disc: "bounce into the music",
-    src: "TheWolf"
+    src: "theWolf"
 },
 {
     name: "firestorm",
@@ -141,6 +141,6 @@ src: "FrozenHeart"
 name: "all the best",
 art:  "AllTheBest.jpg",
 disc: "always the same",
-src: "allthebest"
+src: "AllTheBest"
 },
 ];
