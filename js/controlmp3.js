@@ -34,7 +34,9 @@ mysong.addEventListener('error', function () {
 // PAUSE / PLAY
 function togglePlayPause() {
     if (mysong.paused) {
-        mysong.play();
+        mysong.play().catch(function (error) {
+            console.error("Error al reproducir el audio:", error);
+        });
         playButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
     } else {
         mysong.pause();
@@ -65,7 +67,9 @@ function loadSong(index) {
 
     //Dont STOP MUSIC
     if (isPlaying) {
-        mysong.play();
+        mysong.play().catch(function (error) {
+            console.error("Error al reproducir el audio:", error);
+        });
     }
 
     // Update DataSong
