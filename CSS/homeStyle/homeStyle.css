@@ -141,15 +141,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 3rem;
-  width: 3rem;
+  height: 2.7rem;
+  width: 2.7rem;
   font-size: 1.5em;
   color: #fff;
 }
 .background .coverPageUI .music-player .container .controls .special-buttons a i:hover {
   color: #ff334c;
-  border: 2px solid #B32435;
-  border-radius: 50%;
 }
 .background .coverPageUI .music-player .container .controls .special-buttons a i:active {
   transform: scale(0.8);
@@ -159,7 +157,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0rem 0.5rem;
+}
+.background .coverPageUI .music-player .container .controls .special-buttons .circle .play {
+  font-size: 2em;
 }
 .background .coverPageUI .music-player .container .controls .time {
   display: flex;

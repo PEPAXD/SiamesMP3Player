@@ -37,10 +37,10 @@ function togglePlayPause() {
         mysong.play().catch(function (error) {
             console.error("Error al reproducir el audio:", error);
         });
-        playButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        playButton.innerHTML = '<i class="fa-regular fa-circle-pause"></i>';
     } else {
         mysong.pause();
-        playButton.innerHTML = '<i class="fa-solid fa-play"></i>';
+        playButton.innerHTML = '<i class="fa-regular fa-circle-play"></i>';
     }
 }
 
@@ -75,7 +75,7 @@ function loadSong(index) {
     // Update DataSong
     songTitleElement.innerHTML = `<span><i class="fa-solid fa-music" style="color: #ffffff;"></i></span>${song.name}`;
     songAlbumElement.innerHTML = `<span><i class="fa-solid fa-compact-disc" style="color: #ffffff;"></i></span>${song.disc}`;
-    playButton.innerHTML = isPlaying ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+    playButton.innerHTML = isPlaying ? '<i class="fa-regular fa-circle-pause"></i>' : '<i class="fa-regular fa-circle-play"></i>';
     artSong.style.backgroundImage = `url('DiscArt/${song.art}')`;
 
     //PRINT TERMINAL <--PLAY:SONG-->
