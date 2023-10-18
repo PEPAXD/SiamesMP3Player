@@ -125,7 +125,7 @@ body {
   min-height: 30%;
   margin: 0rem 1rem 1rem 1rem;
   background-color: rgba(0, 0, 0, 0.4);
-  font-size: 0.9em;
+  font-size: 1em;
 }
 .background .coverPageUI .music-player .container .controls .special-buttons {
   display: flex;
@@ -153,6 +153,7 @@ body {
 }
 .background .coverPageUI .music-player .container .controls .special-buttons a i:active {
   transform: scale(0.8);
+  filter: brightness(0.6);
 }
 .background .coverPageUI .music-player .container .controls .special-buttons .circle {
   display: flex;
