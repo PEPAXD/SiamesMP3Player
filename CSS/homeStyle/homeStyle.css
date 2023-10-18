@@ -136,6 +136,7 @@ body {
 }
 .background .coverPageUI .music-player .container .controls .special-buttons a {
   margin: 0rem 0.2rem;
+  font-size: 1em;
 }
 .background .coverPageUI .music-player .container .controls .special-buttons a i {
   display: flex;
@@ -143,7 +144,6 @@ body {
   align-items: center;
   height: 2.7rem;
   width: 2.7rem;
-  font-size: 1.5em;
   color: #fff;
 }
 .background .coverPageUI .music-player .container .controls .special-buttons a i:hover {
@@ -157,6 +157,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.5em;
 }
 .background .coverPageUI .music-player .container .controls .special-buttons .circle .play {
   font-size: 2em;
