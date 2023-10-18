@@ -134,35 +134,31 @@ body {
   gap: 1rem;
   margin: 0.5rem 0rem 1.5rem 0rem;
 }
-.background .coverPageUI .music-player .container .controls .special-buttons i {
+.background .coverPageUI .music-player .container .controls .special-buttons a {
+  margin: 0rem 0.2rem;
+}
+.background .coverPageUI .music-player .container .controls .special-buttons a i {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 3rem;
+  width: 3rem;
+  font-size: 1.5em;
+  color: #fff;
 }
-.background .coverPageUI .music-player .container .controls .special-buttons i:hover {
+.background .coverPageUI .music-player .container .controls .special-buttons a i:hover {
   color: #ff334c;
   border: 2px solid #B32435;
   border-radius: 50%;
 }
-.background .coverPageUI .music-player .container .controls .special-buttons i:active {
-  transform: scale(0.9);
+.background .coverPageUI .music-player .container .controls .special-buttons a i:active {
+  transform: scale(0.8);
 }
 .background .coverPageUI .music-player .container .controls .special-buttons .circle {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0rem 0.5rem;
-}
-.background .coverPageUI .music-player .container .controls .special-buttons a {
-  margin: 0rem 0.5rem;
-}
-.background .coverPageUI .music-player .container .controls .special-buttons a i {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 2.2rem;
-  width: 2.2rem;
-  color: #fff;
 }
 .background .coverPageUI .music-player .container .controls .time {
   display: flex;
