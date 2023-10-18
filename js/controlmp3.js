@@ -23,6 +23,14 @@ mysong.addEventListener('ended', function () {
     togglePlayPause();
 });
 
+//DOMException Fixed
+mysong.addEventListener('error', function () {
+
+    mysong.load();
+    mysong.play();
+    togglePlayPause();
+});
+
 // PAUSE / PLAY
 function togglePlayPause() {
     if (mysong.paused) {
