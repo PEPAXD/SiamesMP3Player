@@ -131,7 +131,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   margin: 0.5rem 0rem 1.5rem 0rem;
 }
 .background .coverPageUI .music-player .container .controls .special-buttons a {
