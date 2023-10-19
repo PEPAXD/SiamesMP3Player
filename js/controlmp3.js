@@ -7,6 +7,7 @@ const prevButton = document.getElementById("prevButton");
 const songTitleElement = document.getElementById("songTitle");
 const songAlbumElement = document.getElementById("songAlbum");
 const artSong = document.querySelector(".album-art");
+const downloadButton = document.getElementById("downloadButton");
 
 // Variables para rastrear el estado de reproducción
 let isPlaying = false;
@@ -29,6 +30,20 @@ mysong.addEventListener('error', function () {
     mysong.load();
     mysong.play();
     togglePlayPause();
+});
+
+//DonwloadMp3
+downloadButton.addEventListener("click", () => {
+
+    // checkArray
+    const currentSong = allMusic[currentSongIndex];
+    const downloadLink = document.createElement("a");
+
+    // downloadAndCleanLink
+    downloadLink.href = `songs/${currentSong.src}.mp3`;
+    downloadLink.download = `${currentSong.name}.mp3`;
+    downloadLink.click();
+    downloadLink.remove();
 });
 
 // PAUSE / PLAY
@@ -72,7 +87,7 @@ function loadSong(index) {
         });
     }
 
-    // Update DataSong
+    //Update DataSong
     songTitleElement.innerHTML = `<span><i class="fa-solid fa-music" style="color: #ffffff;"></i></span>${song.name}`;
     songAlbumElement.innerHTML = `<span><i class="fa-solid fa-compact-disc" style="color: #ffffff;"></i></span>${song.disc}`;
     playButton.innerHTML = isPlaying ? '<i class="fa-regular fa-circle-pause"></i>' : '<i class="fa-regular fa-circle-play"></i>';
@@ -81,3 +96,4 @@ function loadSong(index) {
     //PRINT TERMINAL <--PLAY:SONG-->
     console.log(`Play: ${song.name}`);
 }
+
