@@ -174,7 +174,6 @@
                             display: flex;
                             justify-content: center;
                             align-items: center;
-                            gap: 2rem;
                             margin: 0.5rem 0rem 1.5rem 0rem;
 
                             a{
@@ -209,6 +208,7 @@
                                 font-size: 1.5em;
                             
                                 .play{
+                                    padding: 1rem;
                                     font-size: 2em;
                                 }
                             }
@@ -337,7 +337,7 @@
         justify-content: center;
 
         .music-player {
-            width: 25rem !important;
+            width: 20rem !important;
             max-width: none !important;
             margin: 0 auto !important;
         }
