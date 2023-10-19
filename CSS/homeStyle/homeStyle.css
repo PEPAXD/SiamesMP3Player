@@ -160,6 +160,7 @@ body {
   font-size: 1.5em;
 }
 .background .coverPageUI .music-player .container .controls .special-buttons .circle .play {
+  padding: 1rem;
   font-size: 2em;
 }
 .background .coverPageUI .music-player .container .controls .time {
@@ -247,7 +248,7 @@ body {
     justify-content: center;
   }
   .coverPageUI .music-player {
-    width: 25rem !important;
+    width: 20rem !important;
     max-width: none !important;
     margin: 0 auto !important;
   }
