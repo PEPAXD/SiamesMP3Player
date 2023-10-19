@@ -8,6 +8,7 @@ const songTitleElement = document.getElementById("songTitle");
 const songAlbumElement = document.getElementById("songAlbum");
 const artSong = document.querySelector(".album-art");
 const downloadButton = document.getElementById("downloadButton");
+const songCountButton = document.getElementById("songCount");
 
 // Variables para rastrear el estado de reproducción
 let isPlaying = false;
@@ -92,8 +93,16 @@ function loadSong(index) {
     songAlbumElement.innerHTML = `<span><i class="fa-solid fa-compact-disc" style="color: #ffffff;"></i></span>${song.disc}`;
     playButton.innerHTML = isPlaying ? '<i class="fa-regular fa-circle-pause"></i>' : '<i class="fa-regular fa-circle-play"></i>';
     artSong.style.backgroundImage = `url('DiscArt/${song.art}')`;
+    updateSongCount();
 
     //PRINT TERMINAL <--PLAY:SONG-->
     console.log(`Play: ${song.name}`);
 }
 
+//PrintLengthArray
+function updateSongCount() {
+
+    //CheckAndUpdate
+    const totalSongs = allMusic.length;
+    songCountButton.textContent = `${currentSongIndex + 1}/${totalSongs}`;
+}
