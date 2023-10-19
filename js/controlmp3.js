@@ -9,6 +9,7 @@ const songAlbumElement = document.getElementById("songAlbum");
 const artSong = document.querySelector(".album-art");
 const downloadButton = document.getElementById("downloadButton");
 const songCountButton = document.getElementById("songCount");
+const timeCountElement = document.getElementById("timeCount");
 
 // Variables para rastrear el estado de reproducción
 let isPlaying = false;
@@ -24,6 +25,8 @@ mysong.addEventListener('ended', function () {
     playNextSong();
     togglePlayPause();
 });
+
+mysong.addEventListener("timeupdate", updateCurrentTime);
 
 //DOMException Fixed
 mysong.addEventListener('error', function () {
@@ -101,8 +104,35 @@ function loadSong(index) {
 
 //PrintLengthArray
 function updateSongCount() {
-
-    //CheckAndUpdate
     const totalSongs = allMusic.length;
     songCountButton.textContent = `${currentSongIndex + 1}/${totalSongs}`;
+}
+
+//formatTime [mm:ss]
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secondsRemaining = Math.floor(seconds % 60);
+    return `${minutes}:${secondsRemaining < 10 ? '0' : ''}${secondsRemaining}`;
+}
+
+//CurrentSongTime
+function updateCurrentTime() {
+    
+    //CheckDataTime
+    const currentTimeElement = document.querySelector(".currentTime .start");
+    const endTimeElement = document.querySelector(".currentTime .end");
+    const duration = mysong.duration;
+    const currentTime = mysong.currentTime;
+    const timeBar = document.getElementById("timeBar");
+
+    //UpdateTime
+    if (isNaN(currentTime) || isNaN(duration)) {
+        currentTimeElement.textContent = '0:00';
+        endTimeElement.textContent = '0:00';
+        timeBar.value = 0;
+    } else {
+        currentTimeElement.textContent = formatTime(currentTime);
+        endTimeElement.textContent = formatTime(duration);
+        timeBar.value = currentTime / duration;
+    }
 }
