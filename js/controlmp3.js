@@ -117,7 +117,6 @@ function formatTime(seconds) {
 
 //CurrentSongTime
 function updateCurrentTime() {
-    
     //CheckDataTime
     const currentTimeElement = document.querySelector(".currentTime .start");
     const endTimeElement = document.querySelector(".currentTime .end");
