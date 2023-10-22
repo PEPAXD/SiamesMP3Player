@@ -182,9 +182,10 @@ body {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  background: linear-gradient(to right, #B32435 50%, #f0f0f0 50%);
   border-radius: 10px;
   outline: none;
+  --progress: 0%; /* Valor inicial del progreso */
+  background-image: linear-gradient(to right, #B32435 var(--progress), #f0f0f0 var(--progress));
 }
 .background .coverPageUI .music-player .container .controls .time .progress-bar::-webkit-slider-thumb {
   -webkit-appearance: none;

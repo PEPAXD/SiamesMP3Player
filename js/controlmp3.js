@@ -10,6 +10,7 @@ const artSong = document.querySelector(".album-art");
 const downloadButton = document.getElementById("downloadButton");
 const songCountButton = document.getElementById("songCount");
 const timeCountElement = document.getElementById("timeCount");
+const progressBar = document.getElementById("progressBar");
 
 // Variables para rastrear el estado de reproducción
 let isPlaying = false;
@@ -26,7 +27,12 @@ mysong.addEventListener('ended', function () {
     togglePlayPause();
 });
 
+// SongTime
 mysong.addEventListener("timeupdate", updateCurrentTime);
+
+// ProgressBar
+mysong.addEventListener("timeupdate", updateProgressBar);
+progressBar.addEventListener("input", handleProgressBarChange);
 
 //DOMException Fixed
 mysong.addEventListener('error', function () {
@@ -113,6 +119,24 @@ function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const secondsRemaining = Math.floor(seconds % 60);
     return `${minutes}:${secondsRemaining < 10 ? '0' : ''}${secondsRemaining}`;
+}
+
+//ProgressBar Control
+function handleProgressBarChange() {
+    const duration = mysong.duration;
+    const newPosition = (progressBar.value / 100) * duration;
+    mysong.currentTime = newPosition;
+}
+
+function updateProgressBar() {
+    const currentTime = mysong.currentTime;
+    const duration = mysong.duration;
+
+    if (!isNaN(currentTime) && !isNaN(duration)) {
+        const progress = (currentTime / duration) * 100;
+        progressBar.value = progress;
+        progressBar.style.setProperty('--progress', `${progress}%`);
+    }
 }
 
 //CurrentSongTime
