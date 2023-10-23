@@ -242,7 +242,7 @@
                                 border-radius: 10px;
                                 outline: none;
 
-                                --progress: 0%; /* Valor inicial del progreso */
+                                --progress: 0%;
                                 background-image: linear-gradient(to right, #B32435 var(--progress), #f0f0f0 var(--progress));
 
                                 &::-webkit-slider-thumb {
@@ -260,9 +260,8 @@
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
-    
-                            margin: 0.8rem 0rem;
-                            color: #fff;
+                            
+
     
                             span{
                                 display: flex;
@@ -270,18 +269,16 @@
                                 align-items: center;
     
                                 margin: 0rem 1rem;
-                                width: 100%;
                                 gap: 0.5rem;
-    
-    
+                                width: 100%;
+
                                 a{
                                     display: flex;
                                     justify-content: center;
                                     align-items: center;
-    
-                                    margin: 0rem 0.2rem;
+
+                                    padding: 1rem 1rem;
                                     width: 2rem;
-                                    line-height: 1;
     
                                     color: #fff;
                                     transition: color 0.1s ease;
@@ -289,6 +286,15 @@
                                     &:hover{
                                         color: #B32435;
                                     }
+                                }
+
+                                i{
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+
+                                    padding: 0rem 1rem;
+                                    font-size: 1em;
                                 }
     
                                 input[type="range"].volume {
@@ -313,6 +319,11 @@
                                         height: 10px;
                                         background: #4682B4;
                                     }
+                                }
+
+                                .disabled {
+                                    pointer-events: none;
+                                    opacity: 0.5;
                                 }
                             }
     

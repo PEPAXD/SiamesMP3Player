@@ -12,6 +12,7 @@ const songCountButton = document.getElementById("songCount");
 const timeCountElement = document.getElementById("timeCount");
 const progressBar = document.getElementById("progressBar");
 const volumeControl = document.getElementById("volumeControl");
+const volMinIcon = document.querySelector('.volMin');
 
 
 
@@ -24,6 +25,7 @@ loadSong(currentSongIndex);
 playButton.addEventListener("click", togglePlayPause);
 nextButton.addEventListener("click", playNextSong);
 prevButton.addEventListener("click", playPrevSong);
+
 
 mysong.addEventListener('ended', function () {
     playNextSong();
@@ -42,6 +44,7 @@ volumeControl.addEventListener("input", () => {
     const volume = volumeControl.value;
     mysong.volume = volume;
     document.documentElement.style.setProperty('--volume', volume * 100 + '%');
+    updateVolumeIcon();
 });
 mysong.volume = volumeControl.value;
 
@@ -66,6 +69,45 @@ downloadButton.addEventListener("click", () => {
     downloadLink.click();
     downloadLink.remove();
 });
+
+volMinIcon.addEventListener('click', () => {
+    if (mysong.volume === 0) {
+        // muted off
+        const savedVolume = volumeControl.getAttribute("data-css");
+        mysong.volume = savedVolume;
+        volumeControl.value = savedVolume;
+        volumeControl.classList.remove('muted');
+        volumeControl.classList.remove('disabled');
+        document.documentElement.style.setProperty('--volume', savedVolume * 100 + '%');
+    } else {
+        // muted on
+        mysong.volume = 0;
+        volumeControl.setAttribute("data-css", volumeControl.value);
+        volumeControl.value = 0;
+        volumeControl.classList.add('muted');
+        volumeControl.classList.add('disabled');
+        document.documentElement.style.setProperty('--volume', '0%');
+    }
+    updateVolumeIcon(); //updataVol
+});
+updateVolumeIcon();
+
+// Función para actualizar el ícono del volumen
+function updateVolumeIcon() {
+    const volumeIcon = volMinIcon.querySelector('i.fa-solid');
+    if (mysong.volume === 0) {
+        volumeIcon.className = 'fa-solid fa-volume-xmark';
+    } else if (mysong.volume <= 0.2){
+        volumeIcon.className = 'fa-solid fa-volume-off';
+    }
+    else if (mysong.volume <= 0.5) {
+        volumeIcon.className = 'fa-solid fa-volume-low';
+    } else {
+        volumeIcon.className = 'fa-solid fa-volume-high';
+    }
+}
+
+
 
 // PAUSE / PLAY
 function togglePlayPause() {
@@ -114,6 +156,7 @@ function loadSong(index) {
     playButton.innerHTML = isPlaying ? '<i class="fa-regular fa-circle-pause"></i>' : '<i class="fa-regular fa-circle-play"></i>';
     artSong.style.backgroundImage = `url('DiscArt/${song.art}')`;
     updateSongCount();
+    
 
     //PRINT TERMINAL <--PLAY:SONG-->
     console.log(`Play: ${song.name}`);
