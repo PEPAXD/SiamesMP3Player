@@ -4,121 +4,100 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!--WebData-->
+    
+    <!-- WebData -->
     <title>SIAMES.mp3 - by MauroPepa</title>
     <link rel="icon" href="img/logoSiames.svg">
-
-    <!--CSS mainStyle-->
+    
+    <!-- CSS mainStyle -->
     <link rel="stylesheet" href="CSS/homeStyle/homeStyle.css">
-
-    <!--FontAwesom-->
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-
 </head>
 <body>
-
-    <!--HomeMenu-->
+    <!-- HomeMenu -->
     <main>
         <div class="background">
-
-            <!--SpanBubbles-->
+            <!-- SpanBubbles -->
             <div class="bubbleFrames">
-                <div class="bubbles">
-
+                <div class="bubbles"></div>
             </div>
-            </div>
-
-            <!--mp3UI-->
+            
+            <!-- mp3UI -->
             <div class="coverPageUI">
-            <div class="music-player">
-                <div class="container">
-
-                    <!--Img --- Data-->
-                    <div id="artSong" class="album-art">
-                        <div class="current-info">
-                            <ul>
-                                <li id="songTitle" class="song-title"><span><i class="fa-solid fa-music" style="color: #ffffff;"></i></span></li>
-                                <li id="songAlbum" class="song-album"><span><i class="fa-solid fa-compact-disc" style="color: #ffffff;"></i></span></li>
-                            </ul>
-                        </div>
-                    </div>
-
-
-                    
-                <div class="controls">
-
-                    <!--play/pause/prev/next --- Download/list-->
-                    <div class="special-buttons">
-                        <a href="#" id="downloadButton"><i class="fa-solid fa-download" ></i></a>
-                        
-                        <div class="circle">
-                            <a href="#" id="prevButton"class="prev"><i class="fa-solid fa-backward-step"></i></a>
-                            <a href="#" id="playButton" class="play"><i class="fa-regular fa-circle-play"></i></a>
-                            <a href="#" id="nextButton"class="next"><i class="fa-solid fa-forward-step"></i></a>
+                <div class="music-player">
+                    <div class="container">
+                        <!-- Img & Data -->
+                        <div id="artSong" class="album-art">
+                            <div class="current-info">
+                                <ul>
+                                    <li id="songTitle" class="song-title"><span><i class="fa-solid fa-music" style="color: #ffffff;"></i></span></li>
+                                    <li id="songAlbum" class="song-album"><span><i class="fa-solid fa-compact-disc" style="color: #ffffff;"></i></span></li>
+                                </ul>
+                            </div>
                         </div>
                         
-                        <a href="#"><i class="fa-solid fa-bars"></i></a>
-                    </div>
+                        <div class="controls">
+                            <!-- Play/Pause/Prev/Next, Download, List -->
+                            <div class="special-buttons">
+                                <a href="#" id="downloadButton"><i class="fa-solid fa-download"></i></a>
+                                
+                                <div class="circle">
+                                    <a href="#" id="prevButton" class="prev"><i class="fa-solid fa-backward-step"></i></a>
+                                    <a href="#" id="playButton" class="play"><i class="fa-regular fa-circle-play"></i></a>
+                                    <a href="#" id="nextButton" class="next"><i class="fa-solid fa-forward-step"></i></a>
+                                </div>
+                                
+                                <a href="#"><i class="fa-solid fa-bars"></i></a>
+                            </div>
+                            
+                            <!-- Bar Data -->
+                            <div class="time">
+                                <div class="data">
+                                    <span id="songCount" class="songNumber">24/24</span>
+                                    <span id="timeCount" class="currentTime"><span class="start">---</span> / <span class="end">---</span></span>
+                                </div>        
 
-                    <!--barData-->
-                    <div class="time">
-                        <div class="data">
-                            <span id="songCount" class="songNumber">24/24</span>
-                            <span id="timeCount" class="currentTime"><span class="start">---</span> / <span class="end">---</span></span>
-                        </div>        
-
-                        <div class="progress">
-                            <div id="timeBar" class="bar"><input type="range" class="progress-bar" min="0" max="100" step="0.1" value="0" id="progressBar"></div>
+                                <div class="progress">
+                                    <div id="timeBar" class="bar">
+                                        <input type="range" class="progress-bar" min="0" max="100" step="0.1" value="0" id="progressBar">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Like/Repeat/Random, Volume Control -->
+                            <div class="action-button">
+                                <span>
+                                    <a href="#"><i class="fa-regular fa-heart"></i></a>
+                                    <a href="#"><i class="fa-solid fa-shuffle"></i></a>
+                                    <a href="#"><i class="fa-solid fa-repeat"></i></a>
+                                </span>
+                                <span>
+                                    <a href="#" class="volMin"><i class="fa-solid fa-volume-low"></i></a>
+                                    <input id="volumeControl" type="range" class="volume"  min="0" max="1" step="0.01" value="0.5" data-css="0.5">
+                                </span>
+                            </div>
                         </div>
                     </div>
-                    
-
-                    <!--like/repeat/Random --- low/Up Vol-->
-                    <div class="action-button">
-
-                        <span>
-                        <a href="#"><i class="fa-regular fa-heart"></i></a>
-                        <a href="#"><i class="fa-solid fa-shuffle"></i></a>
-                        <a href="#"><i class="fa-solid fa-repeat"></i></a>
-                        </span>
-                        
-                        <span>
-                        <a href="#" class="volMin"><i class="fa-solid fa-volume-low"></i></a>
-                        <input type="range" class="volume"  min="0" max="1" step="0.1" value="0.5" data-css="0.5">
-                        </span>
-
-                    </div>
-                    
-
                 </div>
                 
-
+                <!-- WolfImg -->
+                <div class="wolf"><img src="img/wolf.svg" alt=""></div>
             </div>
+            
+            <!-- Music -->
+            <audio id="mysong">
+                <source src="" type="audio/mp3">
+            </audio>
         </div>
-
-    <!--WolfImg-->
-    <div class="wolf"><img src="img/wolf.svg" alt=""></div>
-
-    </div>
-
-
-    <!--Music-->
-    <audio id="mysong">
-        <source src="" type="audio/mp3">
-    </audio>
-    
-    </div>
     </main>
-
-    <!--bubbleScript-->
+    
+    <!-- BubbleScript -->
     <script src="js/bubble.js"></script>
-
-    <!--mp3Script-->
+    
+    <!-- mp3Script -->
     <script src="js/musicList.js"></script>
     <script src="js/controlmp3.js"></script>
-
-
-
 </body>
 </html>

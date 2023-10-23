@@ -229,11 +229,18 @@ body {
   -webkit-appearance: none;
   -moz-appearance: none;
        appearance: none;
-  background: none;
+  background-image: linear-gradient(to right, #B32435 50%, #f0f0f0 50%);
 }
 .background .coverPageUI .music-player .container .controls .action-button span input[type=range].volume::-webkit-slider-runnable-track {
-  background: linear-gradient(to right, #B32435 50%, #f0f0f0 50%);
+  background-image: linear-gradient(to right, #B32435 var(--volume), #f0f0f0 var(--volume));
   border-radius: 1rem;
+}
+.background .coverPageUI .music-player .container .controls .action-button span input[type=range].volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+          appearance: none;
+  width: 10px;
+  height: 10px;
+  background: #4682B4;
 }
 .background .wolf {
   width: 80%;

@@ -11,6 +11,9 @@ const downloadButton = document.getElementById("downloadButton");
 const songCountButton = document.getElementById("songCount");
 const timeCountElement = document.getElementById("timeCount");
 const progressBar = document.getElementById("progressBar");
+const volumeControl = document.getElementById("volumeControl");
+
+
 
 // Variables para rastrear el estado de reproducción
 let isPlaying = false;
@@ -33,6 +36,14 @@ mysong.addEventListener("timeupdate", updateCurrentTime);
 // ProgressBar
 mysong.addEventListener("timeupdate", updateProgressBar);
 progressBar.addEventListener("input", handleProgressBarChange);
+
+//volBar
+volumeControl.addEventListener("input", () => {
+    const volume = volumeControl.value;
+    mysong.volume = volume;
+    document.documentElement.style.setProperty('--volume', volume * 100 + '%');
+});
+mysong.volume = volumeControl.value;
 
 //DOMException Fixed
 mysong.addEventListener('error', function () {
