@@ -30,6 +30,10 @@ loadSong(currentSongIndex);
 playButton.addEventListener("click", togglePlayPause);
 nextButton.addEventListener("click", playNextSong);
 prevButton.addEventListener("click", playPrevSong);
+progressBar.addEventListener("input", handleProgressBarChange);
+volumeControl.addEventListener("input", handleVolumeControlChange);
+downloadButton.addEventListener("click", downloadCurrentSong);
+volMinIcon.addEventListener('click', toggleMute);
 
 mysong.addEventListener('ended', function () {
     playNextSong();
@@ -40,12 +44,6 @@ mysong.addEventListener("timeupdate", function () {
     updateCurrentTime();
     updateProgressBar();
 });
-
-progressBar.addEventListener("input", handleProgressBarChange);
-volumeControl.addEventListener("input", handleVolumeControlChange);
-downloadButton.addEventListener("click", downloadCurrentSong);
-volMinIcon.addEventListener('click', toggleMute);
-
 
 function updateVolumeIcon() {
     const volumeIcon = volMinIcon.querySelector('i');
