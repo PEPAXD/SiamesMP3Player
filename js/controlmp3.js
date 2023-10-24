@@ -16,6 +16,8 @@ const volMinIcon = document.querySelector('.volMin');
 
 
 
+
+
 // Variables para rastrear el estado de reproducción
 let isPlaying = false;
 let currentSongIndex = 0;
@@ -90,6 +92,11 @@ volMinIcon.addEventListener('click', () => {
     }
     updateVolumeIcon(); //updataVol
 });
+
+// maxVol
+mysong.volume = 1.0;
+volumeControl.value = 1.0;
+document.documentElement.style.setProperty('--volume', '100%');
 updateVolumeIcon();
 
 // Función para actualizar el ícono del volumen
@@ -159,7 +166,12 @@ function loadSong(index) {
     
 
     //PRINT TERMINAL <--PLAY:SONG-->
-    console.log(`Play: ${song.name}`);
+    //console.log(`Play: ${song.name}`);
+    printFavoriteSongs()
+}
+
+function printFavoriteSongs() {
+    console.log('Lista de canciones favoritas:', favoriteSongs);
 }
 
 //PrintLengthArray
