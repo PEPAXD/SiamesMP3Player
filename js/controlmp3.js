@@ -203,12 +203,13 @@ function updateProgressBar() {
 
 //CurrentSongTime
 function updateCurrentTime() {
+    
     //CheckDataTime
     const currentTimeElement = document.querySelector(".currentTime .start");
     const endTimeElement = document.querySelector(".currentTime .end");
     const duration = mysong.duration;
     const currentTime = mysong.currentTime;
-    const timeBar = document.getElementById("timeBar");
+
 
     //UpdateTime
     if (isNaN(currentTime) || isNaN(duration)) {
