@@ -1,5 +1,4 @@
-
-//getID
+// get ID
 const mysong = document.getElementById("mysong");
 const playButton = document.getElementById("playButton");
 const nextButton = document.getElementById("nextButton");
@@ -14,91 +13,42 @@ const progressBar = document.getElementById("progressBar");
 const volumeControl = document.getElementById("volumeControl");
 const volMinIcon = document.querySelector('.volMin');
 
-// Variables para rastrear el estado de reproducción
+// checkPlayingSong
 let isPlaying = false;
 let currentSongIndex = 0;
 
-// CallFunction´s
+// VolMax
+mysong.volume = 1.0;
+volumeControl.value = 1.0;
+document.documentElement.style.setProperty('--volume', '100%');
+updateVolumeIcon();
+
+// callLoadSong
 loadSong(currentSongIndex);
+
+// clickEvents
 playButton.addEventListener("click", togglePlayPause);
 nextButton.addEventListener("click", playNextSong);
 prevButton.addEventListener("click", playPrevSong);
-
 
 mysong.addEventListener('ended', function () {
     playNextSong();
     togglePlayPause();
 });
 
-// SongTime
-mysong.addEventListener("timeupdate", updateCurrentTime);
+mysong.addEventListener("timeupdate", function () {
+    updateCurrentTime();
+    updateProgressBar();
+});
 
-// ProgressBar
-mysong.addEventListener("timeupdate", updateProgressBar);
 progressBar.addEventListener("input", handleProgressBarChange);
+volumeControl.addEventListener("input", handleVolumeControlChange);
+downloadButton.addEventListener("click", downloadCurrentSong);
+volMinIcon.addEventListener('click', toggleMute);
 
-//volBar
-volumeControl.addEventListener("input", () => {
-    const volume = volumeControl.value;
-    mysong.volume = volume;
-    document.documentElement.style.setProperty('--volume', volume * 100 + '%');
-    updateVolumeIcon();
-});
-mysong.volume = volumeControl.value;
-
-//DOMException Fixed
-mysong.addEventListener('error', function () {
-
-    mysong.load();
-    mysong.play();
-    togglePlayPause();
-});
-
-//DonwloadMp3
-downloadButton.addEventListener("click", () => {
-
-    // checkArray
-    const currentSong = allMusic[currentSongIndex];
-    const downloadLink = document.createElement("a");
-
-    // downloadAndCleanLink
-    downloadLink.href = `songs/${currentSong.src}.mp3`;
-    downloadLink.download = `${currentSong.name}.mp3`;
-    downloadLink.click();
-    downloadLink.remove();
-});
-
-volMinIcon.addEventListener('click', () => {
-    if (mysong.volume === 0) {
-        // muted off
-        const savedVolume = volumeControl.getAttribute("data-css");
-        mysong.volume = savedVolume;
-        volumeControl.value = savedVolume;
-        volumeControl.classList.remove('muted');
-        volumeControl.classList.remove('disabled');
-        document.documentElement.style.setProperty('--volume', savedVolume * 100 + '%');
-    } else {
-        // muted on
-        mysong.volume = 0;
-        volumeControl.setAttribute("data-css", volumeControl.value);
-        volumeControl.value = 0;
-        volumeControl.classList.add('muted');
-        volumeControl.classList.add('disabled');
-        document.documentElement.style.setProperty('--volume', '0%');
-    }
-    updateVolumeIcon(); //updataVol
-});
-
-// maxVol
-mysong.volume = 1.0;
-volumeControl.value = 1.0;
-document.documentElement.style.setProperty('--volume', '100%');
-updateVolumeIcon();
 
 function updateVolumeIcon() {
-    const volMinButton = document.querySelector('.volMin');
-    const volumeIcon = volMinButton.querySelector('i');
-    const volumeControl = document.getElementById('volumeControl');
+    const volumeIcon = volMinIcon.querySelector('i');
 
     if (volumeControl.value == 0) {
         volumeIcon.className = 'fas fa-volume-xmark';
@@ -111,79 +61,67 @@ function updateVolumeIcon() {
     }
 }
 
-
-// PAUSE / PLAY
 function togglePlayPause() {
     if (mysong.paused) {
-        mysong.play().catch(function (error) {
-            console.error("Error al reproducir el audio:", error);
-        });
-        playButton.innerHTML = '<i class="fa-regular fa-circle-pause"></i>';
+        playSong();
     } else {
-        mysong.pause();
-        playButton.innerHTML = '<i class="fa-regular fa-circle-play"></i>';
+        pauseSong();
     }
 }
 
-// NEXT
+function playSong() {
+    mysong.play().catch(function (error) {
+        console.error("Error al reproducir el audio:", error);
+    });
+    playButton.innerHTML = '<i class="fa-regular fa-circle-pause"></i>';
+    isPlaying = true;
+}
+
+function pauseSong() {
+    mysong.pause();
+    playButton.innerHTML = '<i class="fa-regular fa-circle-play"></i>';
+    isPlaying = false;
+}
+
 function playNextSong() {
     currentSongIndex = (currentSongIndex + 1) % allMusic.length;
     loadSong(currentSongIndex);
 }
 
-// PREV
 function playPrevSong() {
     currentSongIndex = (currentSongIndex - 1 + allMusic.length) % allMusic.length;
     loadSong(currentSongIndex);
 }
 
-// LoadSong
 function loadSong(index) {
-
-    //CHECK MUSIC
     const song = allMusic[index];
-    const wasPlaying = !mysong.paused;
-    mysong.src = `songs/${song.src}.mp3`;
-    isPlaying = wasPlaying; 
+    const wasPlaying = isPlaying;
 
-    //Dont STOP MUSIC
+    mysong.src = `songs/${song.src}.mp3`;
+    isPlaying = wasPlaying;
+
     if (isPlaying) {
-        mysong.play().catch(function (error) {
-            console.error("Error al reproducir el audio:", error);
-        });
+        playSong();
     }
 
-    //Update DataSong
     songTitleElement.innerHTML = `<span>${song.name}</span>`;
     songAlbumElement.innerHTML = `<span>${song.disc}</span>`;
     playButton.innerHTML = isPlaying ? '<i class="fa-regular fa-circle-pause"></i>' : '<i class="fa-regular fa-circle-play"></i>';
     artSong.style.backgroundImage = `url('DiscArt/${song.art}')`;
     updateSongCount();
-    
-
-    //PRINT TERMINAL <--PLAY:SONG-->
-    //console.log(`Play: ${song.name}`);
-    printFavoriteSongs()
 }
 
-function printFavoriteSongs() {
-    console.log('Lista de canciones favoritas:', favoriteSongs);
-}
-
-//PrintLengthArray
 function updateSongCount() {
     const totalSongs = allMusic.length;
     songCountButton.textContent = `${currentSongIndex + 1}/${totalSongs}`;
 }
 
-//formatTime [mm:ss]
 function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const secondsRemaining = Math.floor(seconds % 60);
     return `${minutes}:${secondsRemaining < 10 ? '0' : ''}${secondsRemaining}`;
 }
 
-//ProgressBar Control
 function handleProgressBarChange() {
     const duration = mysong.duration;
     const newPosition = (progressBar.value / 100) * duration;
@@ -201,17 +139,12 @@ function updateProgressBar() {
     }
 }
 
-//CurrentSongTime
 function updateCurrentTime() {
-    
-    //CheckDataTime
     const currentTimeElement = document.querySelector(".currentTime .start");
     const endTimeElement = document.querySelector(".currentTime .end");
     const duration = mysong.duration;
     const currentTime = mysong.currentTime;
 
-
-    //UpdateTime
     if (isNaN(currentTime) || isNaN(duration)) {
         currentTimeElement.textContent = '0:00';
         endTimeElement.textContent = '0:00';
@@ -219,4 +152,52 @@ function updateCurrentTime() {
         currentTimeElement.textContent = formatTime(currentTime);
         endTimeElement.textContent = formatTime(duration);
     }
+}
+
+function handleVolumeControlChange() {
+    const volume = volumeControl.value;
+    mysong.volume = volume;
+    document.documentElement.style.setProperty('--volume', volume * 100 + '%');
+    updateVolumeIcon();
+}
+
+function toggleMute() {
+    if (mysong.volume === 0) {
+        unmuteSong();
+    } else {
+        muteSong();
+    }
+}
+
+function muteSong() {
+    mysong.volume = 0;
+    volumeControl.setAttribute("data-css", volumeControl.value);
+    volumeControl.value = 0;
+    volumeControl.classList.add('muted');
+    volumeControl.classList.add('disabled');
+    document.documentElement.style.setProperty('--volume', '0%');
+    updateVolumeIcon();
+}
+
+function unmuteSong() {
+    const savedVolume = volumeControl.getAttribute("data-css");
+    mysong.volume = savedVolume;
+    volumeControl.value = savedVolume;
+    volumeControl.classList.remove('muted');
+    volumeControl.classList.remove('disabled');
+    document.documentElement.style.setProperty('--volume', savedVolume * 100 + '%');
+    updateVolumeIcon();
+}
+
+function downloadCurrentSong() {
+    const currentSong = allMusic[currentSongIndex];
+    const downloadLink = document.createElement("a");
+    downloadLink.href = `songs/${currentSong.src}.mp3`;
+    downloadLink.download = `${currentSong.name}.mp3`;
+    downloadLink.click();
+    downloadLink.remove();
+}
+
+function printFavoriteSongs() {
+    console.log('Lista de canciones favoritas:', favoriteSongs);
 }
