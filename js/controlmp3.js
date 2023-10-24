@@ -1,3 +1,4 @@
+
 //getID
 const mysong = document.getElementById("mysong");
 const playButton = document.getElementById("playButton");
@@ -213,10 +214,8 @@ function updateCurrentTime() {
     if (isNaN(currentTime) || isNaN(duration)) {
         currentTimeElement.textContent = '0:00';
         endTimeElement.textContent = '0:00';
-        timeBar.value = 0;
     } else {
         currentTimeElement.textContent = formatTime(currentTime);
         endTimeElement.textContent = formatTime(duration);
-        timeBar.value = currentTime / duration;
     }
 }
