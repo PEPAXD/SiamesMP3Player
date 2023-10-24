@@ -37,7 +37,6 @@ volMinIcon.addEventListener('click', toggleMute);
 
 mysong.addEventListener('ended', function () {
     playNextSong();
-    togglePlayPause();
 });
 
 mysong.addEventListener("timeupdate", function () {
@@ -84,11 +83,13 @@ function pauseSong() {
 function playNextSong() {
     currentSongIndex = (currentSongIndex + 1) % allMusic.length;
     loadSong(currentSongIndex);
+    playSong();
 }
 
 function playPrevSong() {
     currentSongIndex = (currentSongIndex - 1 + allMusic.length) % allMusic.length;
     loadSong(currentSongIndex);
+    playSong();
 }
 
 function loadSong(index) {
@@ -107,6 +108,7 @@ function loadSong(index) {
     playButton.innerHTML = isPlaying ? '<i class="fa-regular fa-circle-pause"></i>' : '<i class="fa-regular fa-circle-play"></i>';
     artSong.style.backgroundImage = `url('DiscArt/${song.art}')`;
     updateSongCount();
+    
 }
 
 function updateSongCount() {
