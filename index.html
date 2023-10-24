@@ -40,60 +40,60 @@
                         <figure id="artSong" class="album-art">
                             <div class="current-info">
                                 <figcaption>
-                                    <h2 class="song-title"><i class="fa-solid fa-music" style="color: #ffffff;"></i><span id="songTitle">titulo de la cancion</span></h2>
-                                    <h2 class="song-album"><i class="fa-solid fa-compact-disc" style="color: #ffffff;"></i><span id="songAlbum">album</span></h2>
+                                    <h2 class="song-title"><i class="fa-solid fa-music"></i><span id="songTitle">titulo de la cancion</span></h2>
+                                    <h2 class="song-album"><i class="fa-solid fa-compact-disc"></i><span id="songAlbum">album</span></h2>
                                 </figcaption>
                             </div>
                         </figure>
                         
+                        <!--mp3controls-->
                         <div class="controls">
+
                             <!-- Play/Pause/Prev/Next, Download, List -->
                             <div class="special-buttons">
-                                <a href="#" id="downloadButton"><i class="fa-solid fa-download"></i></a>
+                                <button id="downloadButton"><i class="fas fa-download"></i></button>
                                 
-                                <div class="circle">
-                                    <a href="#" id="prevButton" class="prev"><i class="fa-solid fa-backward-step"></i></a>
-                                    <a href="#" id="playButton" class="play"><i class="fa-regular fa-circle-play"></i></a>
-                                    <a href="#" id="nextButton" class="next"><i class="fa-solid fa-forward-step"></i></a>
+                                <div class="mainbuttons">
+                                    <button id="prevButton" class="prev"><i class="fas fa-backward"></i></button>
+                                    <button id="playButton" class="play"><i class="far fa-play-circle"></i> </button>
+                                    <button id="nextButton" class="next"><i class="fas fa-forward"></i></button>
                                 </div>
                                 
-                                <a href="#"><i class="fa-solid fa-bars"></i></a>
+                                <button id="menuButton"><i class="fas fa-bars"></i></button>
                             </div>
                             
-                            <!-- Bar Data -->
+                            <!-- BarSongData -->
                             <div class="time">
                                 <div class="data">
-                                    <span id="songCount" class="songNumber">24/24</span>
-                                    <span id="timeCount" class="currentTime"><span class="start">---</span> / <span class="end">---</span></span>
-                                </div>        
-
+                                    <p id="songCount" class="songNumber">-/-</p>
+                                    <p id="timeCount" class="currentTime"><span class="start">---</span> / <span class="end">---</span></p>
+                                </div>
+        
                                 <div class="progress">
-                                    <div id="timeBar" class="bar">
-                                        <input type="range" class="progress-bar" min="0" max="100" step="0.1" value="0" id="progressBar">
-                                    </div>
+                                    <input type="range" class="progress-bar" min="0" max="100" step="0.1" value="0" id="progressBar">
                                 </div>
                             </div>
                             
                             <!-- Like/Repeat/Random, Volume Control -->
                             <div class="action-button">
-                                <span>
-                                    <a id="like" href="#"><i class="fa-regular fa-heart"></i></a>
-                                    <a id="shuffle" href="#"><i class="fa-solid fa-shuffle"></i></a>
-                                    <a id="repeat" href="#"><i class="fa-solid fa-repeat"></i></a>
-                                </span>
-                                <span>
-                                    <a href="#" class="volMin">
-                                        <i class="fa-solid fa-volume-xmark"></i> <!-- Cambiado -->
-                                    </a>
+                                <div>
+                                    <button id="like"><i class="far fa-heart"></i></button>
+                                    <button id="shuffle"><i class="fas fa-random"></i></button>
+                                    <button id="repeat"><i class="fas fa-redo"></i> </button>
+                                </div>
+                                <div>
+                                    <button class="volMin"><i class="fas fa-volume-mute"></i></button>
                                     <input id="volumeControl" type="range" class="volume" min="0" max="1" step="0.01" value="0.5" data-css="0.5">
-                                </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- WolfImg -->
-                <div class="wolf"><img src="img/wolf.svg" alt=""></div>
+                <aside class="wolf">
+                    <img src="img/wolf.svg" alt="TheWolfWallpaper">
+                </aside>
             </div>
             
             <!-- Music -->
@@ -102,13 +102,20 @@
             </audio>
         </div>
     </main>
+
+    <!-- Developer -->
+    <footer>
+        <p>&copy; siames.mp3 - developed by mauro pepa - follow me <a href="https://github.com/PEPAXD?tab=stars" target="_blank" title="Visitar-mi-GitHub">"github/pepaxd"</a></p>
+    </footer>
     
     <!-- BubbleScript -->
     <script src="js/bubble.js"></script>
     
-    <!-- mp3Script -->
+    <!-- mp3SongsList -->
     <script src="js/musicList.js"></script>
     <script src="js/likeList.js"></script>
+
+    <!-- mp3Controls -->
     <script src="js/controlmp3.js"></script>
 </body>
 </html>

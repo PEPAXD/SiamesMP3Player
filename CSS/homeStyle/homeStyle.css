@@ -23,7 +23,7 @@ body {
 .background {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 95vh;
   z-index: 1;
 }
 .background .bubbleFrames {
@@ -137,13 +137,17 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin: 0.5rem 0rem 1rem 0rem;
+  gap: 5%;
+  margin: 0.5rem 0rem;
 }
-.background .coverPageUI .music-player .container .controls .special-buttons a {
-  margin: 0rem 0.2rem;
+.background .coverPageUI .music-player .container .controls .special-buttons .mainbuttons {
+  gap: 1rem;
+}
+.background .coverPageUI .music-player .container .controls .special-buttons button {
+  background-color: transparent;
   font-size: 1em;
 }
-.background .coverPageUI .music-player .container .controls .special-buttons a i {
+.background .coverPageUI .music-player .container .controls .special-buttons button i {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,20 +155,20 @@ body {
   width: 2.7rem;
   color: #fff;
 }
-.background .coverPageUI .music-player .container .controls .special-buttons a i:hover {
+.background .coverPageUI .music-player .container .controls .special-buttons button i:hover {
   color: #ff334c;
 }
-.background .coverPageUI .music-player .container .controls .special-buttons a i:active {
+.background .coverPageUI .music-player .container .controls .special-buttons button i:active {
   transform: scale(0.8);
   filter: brightness(0.6);
 }
-.background .coverPageUI .music-player .container .controls .special-buttons .circle {
+.background .coverPageUI .music-player .container .controls .special-buttons .mainbuttons {
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5em;
 }
-.background .coverPageUI .music-player .container .controls .special-buttons .circle .play {
+.background .coverPageUI .music-player .container .controls .special-buttons .mainbuttons .play {
   padding: 0.5rem 0rem;
   font-size: 2em;
 }
@@ -205,7 +209,7 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.background .coverPageUI .music-player .container .controls .action-button span {
+.background .coverPageUI .music-player .container .controls .action-button div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -213,26 +217,27 @@ body {
   gap: 0.5rem;
   width: 100%;
 }
-.background .coverPageUI .music-player .container .controls .action-button span a {
+.background .coverPageUI .music-player .container .controls .action-button div button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem 1rem;
+  padding: 1rem;
   width: 2rem;
+  background: transparent;
   color: #fff;
   transition: color 0.1s ease;
 }
-.background .coverPageUI .music-player .container .controls .action-button span a:hover {
+.background .coverPageUI .music-player .container .controls .action-button div button:hover {
   color: #B32435;
 }
-.background .coverPageUI .music-player .container .controls .action-button span i {
+.background .coverPageUI .music-player .container .controls .action-button div i {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0rem 1rem;
-  font-size: 1em;
+  font-size: 1.5em;
 }
-.background .coverPageUI .music-player .container .controls .action-button span input[type=range].volume {
+.background .coverPageUI .music-player .container .controls .action-button div input[type=range].volume {
   width: 100%;
   height: 4px;
   border-radius: 1rem;
@@ -241,24 +246,41 @@ body {
        appearance: none;
   background-image: linear-gradient(to right, #B32435 50%, #f0f0f0 50%);
 }
-.background .coverPageUI .music-player .container .controls .action-button span input[type=range].volume::-webkit-slider-runnable-track {
+.background .coverPageUI .music-player .container .controls .action-button div input[type=range].volume::-webkit-slider-runnable-track {
   background-image: linear-gradient(to right, #B32435 var(--volume), #f0f0f0 var(--volume));
   border-radius: 1rem;
 }
-.background .coverPageUI .music-player .container .controls .action-button span input[type=range].volume::-webkit-slider-thumb {
+.background .coverPageUI .music-player .container .controls .action-button div input[type=range].volume::-webkit-slider-thumb {
   -webkit-appearance: none;
           appearance: none;
   width: 10px;
   height: 10px;
   background: #4682B4;
 }
-.background .coverPageUI .music-player .container .controls .action-button span .disabled {
+.background .coverPageUI .music-player .container .controls .action-button div .disabled {
   pointer-events: none;
   opacity: 0.5;
 }
 .background .wolf {
   width: 80%;
   z-index: 2;
+}
+
+footer {
+  text-align: end;
+  padding-right: 1.2rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+footer p {
+  color: #fff;
+  font-size: 0.8em;
+}
+footer p a {
+  color: #B32435;
+}
+footer p a:hover {
+  opacity: 0.8;
 }
 
 /* Movile */
@@ -273,5 +295,9 @@ body {
     width: 20rem !important;
     max-width: none !important;
     margin: 0 auto !important;
+  }
+  footer {
+    text-align: center;
+    font-size: 0.6em;
   }
 }/*# sourceMappingURL=homeStyle.css.map */

@@ -29,7 +29,7 @@
         position: relative;
 
         width: 100vw;
-        height: 100vh;
+        height: 95vh;
 
         z-index: 1;
 
@@ -180,10 +180,16 @@
                             display: flex;
                             justify-content: space-evenly;
                             align-items: center;
-                            margin: 0.5rem 0rem 1rem 0rem;
 
-                            a{
-                                margin: 0rem 0.2rem;
+                            gap: 5%;
+                            margin: 0.5rem 0rem;
+
+                            .mainbuttons{
+                                gap: 1rem;
+                            }
+
+                            button{
+                                background-color: transparent;
                                 font-size: 1em;
 
                             i {
@@ -196,6 +202,7 @@
 
                                 color: #fff;
 
+
                                 &:hover{
                                     color: #ff334c;
                                 }
@@ -207,7 +214,7 @@
                                 }
                             }
                         }
-                            .circle {
+                            .mainbuttons {
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
@@ -267,9 +274,7 @@
                             justify-content: space-between;
                             align-items: center;
                             
-
-    
-                            span{
+                            div{
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
@@ -278,15 +283,17 @@
                                 gap: 0.5rem;
                                 width: 100%;
 
-                                a{
+                                button{
                                     display: flex;
                                     justify-content: center;
                                     align-items: center;
 
-                                    padding: 1rem 1rem;
+                                    padding: 1rem;
                                     width: 2rem;
     
+                                    background: transparent;
                                     color: #fff;
+
                                     transition: color 0.1s ease;
     
                                     &:hover{
@@ -300,7 +307,7 @@
                                     align-items: center;
 
                                     padding: 0rem 1rem;
-                                    font-size: 1em;
+                                    font-size: 1.5em;
                                 }
     
                                 input[type="range"].volume {
@@ -332,11 +339,7 @@
                                     opacity: 0.5;
                                 }
                             }
-    
                         }
-    
-    
-    
                     }
                 }
             }
@@ -345,6 +348,27 @@
         .wolf{
             width: 80%;
             z-index: 2;
+        }
+    }
+
+    footer {
+
+        text-align: end;
+        padding-right: 1.2rem;
+        width: 100%;
+        margin-top: 0.5rem;
+    
+        p {
+        color: #fff;
+        font-size: 0.8em;
+
+            a{
+                color: #B32435;
+
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
         }
     }
 
@@ -363,5 +387,10 @@
             margin: 0 auto !important;
         }
     
+    }
+
+    footer{
+        text-align: center;
+        font-size: 0.6em;
     }
 }
