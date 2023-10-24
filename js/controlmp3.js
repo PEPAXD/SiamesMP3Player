@@ -1,4 +1,3 @@
-
 //getID
 const mysong = document.getElementById("mysong");
 const playButton = document.getElementById("playButton");
@@ -13,10 +12,6 @@ const timeCountElement = document.getElementById("timeCount");
 const progressBar = document.getElementById("progressBar");
 const volumeControl = document.getElementById("volumeControl");
 const volMinIcon = document.querySelector('.volMin');
-
-
-
-
 
 // Variables para rastrear el estado de reproducción
 let isPlaying = false;
@@ -99,21 +94,21 @@ volumeControl.value = 1.0;
 document.documentElement.style.setProperty('--volume', '100%');
 updateVolumeIcon();
 
-// Función para actualizar el ícono del volumen
 function updateVolumeIcon() {
-    const volumeIcon = volMinIcon.querySelector('i.fa-solid');
-    if (mysong.volume === 0) {
-        volumeIcon.className = 'fa-solid fa-volume-xmark';
-    } else if (mysong.volume <= 0.2){
-        volumeIcon.className = 'fa-solid fa-volume-off';
-    }
-    else if (mysong.volume <= 0.5) {
-        volumeIcon.className = 'fa-solid fa-volume-low';
+    const volMinButton = document.querySelector('.volMin');
+    const volumeIcon = volMinButton.querySelector('i');
+    const volumeControl = document.getElementById('volumeControl');
+
+    if (volumeControl.value == 0) {
+        volumeIcon.className = 'fas fa-volume-xmark';
+    } else if (volumeControl.value <= 0.2) {
+        volumeIcon.className = 'fas fa-volume-off';
+    } else if (volumeControl.value <= 0.5) {
+        volumeIcon.className = 'fas fa-volume-low';
     } else {
-        volumeIcon.className = 'fa-solid fa-volume-high';
+        volumeIcon.className = 'fas fa-volume-high';
     }
 }
-
 
 
 // PAUSE / PLAY
