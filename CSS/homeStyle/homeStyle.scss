@@ -29,7 +29,7 @@
         position: relative;
 
         width: 100vw;
-        height: 95vh;
+        height: 96vh;
 
         z-index: 1;
 
@@ -353,17 +353,17 @@
 
     footer {
 
-        text-align: end;
-        padding-right: 1.2rem;
-        width: 100%;
-        margin-top: 0.5rem;
+        text-align: center;
+        width: 138%;
+
+        margin: 0.5rem 0rem;
     
         p {
         color: #fff;
-        font-size: 0.8em;
+        font-size: 0.6em;
 
             a{
-                color: #B32435;
+                color: #ff334c;
 
                 &:hover{
                     opacity: 0.8;
@@ -390,7 +390,7 @@
     }
 
     footer{
-        text-align: center;
-        font-size: 0.6em;
+        width: 100%;
+        font-size: 0.8em;
     }
 }
