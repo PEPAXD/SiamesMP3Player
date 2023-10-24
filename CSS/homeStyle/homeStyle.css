@@ -101,20 +101,26 @@ body {
 }
 .background .coverPageUI .music-player .container .album-art .current-info {
   position: absolute;
+  text-align: start;
   width: 98%;
   bottom: 0;
   margin: 0.1rem;
   padding: 0.2rem 0.5rem;
   background-image: linear-gradient(to right, rgb(179, 36, 53) 20%, transparent);
 }
-.background .coverPageUI .music-player .container .album-art .current-info ul {
-  font-size: 0.6em;
+.background .coverPageUI .music-player .container .album-art .current-info figcaption {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.background .coverPageUI .music-player .container .album-art .current-info figcaption h2 {
+  margin-top: 0.1rem;
+  font-size: 0.7em;
+  font-weight: lighter;
   color: #fff;
 }
-.background .coverPageUI .music-player .container .album-art .current-info ul li {
-  margin-top: 2px;
-}
-.background .coverPageUI .music-player .container .album-art .current-info ul li span {
+.background .coverPageUI .music-player .container .album-art .current-info figcaption h2 i {
   padding-right: 0.5rem;
   vertical-align: middle;
 }

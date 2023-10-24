@@ -158,8 +158,8 @@ function loadSong(index) {
     }
 
     //Update DataSong
-    songTitleElement.innerHTML = `<span><i class="fa-solid fa-music" style="color: #ffffff;"></i></span>${song.name}`;
-    songAlbumElement.innerHTML = `<span><i class="fa-solid fa-compact-disc" style="color: #ffffff;"></i></span>${song.disc}`;
+    songTitleElement.innerHTML = `<span>${song.name}</span>`;
+    songAlbumElement.innerHTML = `<span>${song.disc}</span>`;
     playButton.innerHTML = isPlaying ? '<i class="fa-regular fa-circle-pause"></i>' : '<i class="fa-regular fa-circle-play"></i>';
     artSong.style.backgroundImage = `url('DiscArt/${song.art}')`;
     updateSongCount();

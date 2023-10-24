@@ -133,6 +133,8 @@
     
                         .current-info{
                             position: absolute;
+                            text-align: start;
+
                             width: 98%;
                             bottom: 0;
                             margin: 0.1rem;
@@ -140,15 +142,19 @@
                             
                             background-image: linear-gradient(to right, rgba(179, 36, 53, 1) 20%, transparent); 
     
-                            ul{
-    
-                                font-size: 0.6em;
-                                color: #fff;
-    
-                                li{
-                                    margin-top: 2px;
-                                    
-                                    span{
+                            figcaption {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                align-items: flex-start;
+
+                                    h2{
+                                    margin-top: 0.1rem;
+                                    font-size: 0.7em;
+                                    font-weight: lighter;
+                                    color: #fff;
+
+                                    i{
                                         padding-right: 0.5rem;
                                         vertical-align: middle;
                                     }

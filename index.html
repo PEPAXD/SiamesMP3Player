@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+    
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- DeVData-->
+    <meta name="author" content="MauroPepa">
+    <meta name="description" content="SIAMES.mp3">
     
     <!-- WebData -->
-    <title>SIAMES.mp3 - by MauroPepa</title>
-    <link rel="icon" href="img/logoSiames.svg">
+    <title>SIAMES.mp3</title>
+    <link rel="icon" href="img/logoSiames.svg" type="image/svg+xml">
     
     <!-- CSS mainStyle -->
     <link rel="stylesheet" href="CSS/homeStyle/homeStyle.css">
@@ -15,10 +20,12 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 </head>
+
 <body>
     <!-- HomeMenu -->
     <main>
         <div class="background">
+            
             <!-- SpanBubbles -->
             <div class="bubbleFrames">
                 <div class="bubbles"></div>
@@ -28,15 +35,16 @@
             <div class="coverPageUI">
                 <div class="music-player">
                     <div class="container">
+                        
                         <!-- Img & Data -->
-                        <div id="artSong" class="album-art">
+                        <figure id="artSong" class="album-art">
                             <div class="current-info">
-                                <ul>
-                                    <li id="songTitle" class="song-title"><span><i class="fa-solid fa-music" style="color: #ffffff;"></i></span></li>
-                                    <li id="songAlbum" class="song-album"><span><i class="fa-solid fa-compact-disc" style="color: #ffffff;"></i></span></li>
-                                </ul>
+                                <figcaption>
+                                    <h2 class="song-title"><i class="fa-solid fa-music" style="color: #ffffff;"></i><span id="songTitle">titulo de la cancion</span></h2>
+                                    <h2 class="song-album"><i class="fa-solid fa-compact-disc" style="color: #ffffff;"></i><span id="songAlbum">album</span></h2>
+                                </figcaption>
                             </div>
-                        </div>
+                        </figure>
                         
                         <div class="controls">
                             <!-- Play/Pause/Prev/Next, Download, List -->
