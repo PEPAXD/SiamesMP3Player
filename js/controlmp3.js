@@ -1,22 +1,34 @@
 // get ID
 const mysong = document.getElementById("mysong");
+const songCountButton = document.getElementById("songCount");
+
+// mainButtons
 const playButton = document.getElementById("playButton");
 const nextButton = document.getElementById("nextButton");
 const prevButton = document.getElementById("prevButton");
+
+// dataSong
 const songTitleElement = document.getElementById("songTitle");
 const songAlbumElement = document.getElementById("songAlbum");
 const artSong = document.querySelector(".album-art");
+
+// AuxButtons
 const downloadButton = document.getElementById("downloadButton");
-const songCountButton = document.getElementById("songCount");
+
+// BarSong
 const timeCountElement = document.getElementById("timeCount");
 const progressBar = document.getElementById("progressBar");
+
+// VolButtons
 const volumeControl = document.getElementById("volumeControl");
 const volMinIcon = document.querySelector('.volMin');
+
+// ActionButtons
 const likeButton = document.getElementById('like');
 const shuffleButton = document.getElementById('shuffle');
 const repeatButton = document.getElementById('repeat');
 
-// checkPlayingSong
+// LoadSongArray
 let isPlaying = false;
 let currentSongIndex = 0;
 
@@ -25,6 +37,11 @@ mysong.volume = 1.0;
 volumeControl.value = 1.0;
 document.documentElement.style.setProperty('--volume', '100%');
 updateVolumeIcon();
+
+// OffButtons
+let isShuffleActive = false;
+let playedSongs = [];
+let isRepeatActive = false;
 
 // callLoadSong
 loadSong(currentSongIndex);
@@ -38,17 +55,28 @@ volumeControl.addEventListener("input", handleVolumeControlChange);
 downloadButton.addEventListener("click", downloadCurrentSong);
 volMinIcon.addEventListener('click', toggleMute);
 likeButton.addEventListener('click', () => toggleButtonState(likeButton));
-shuffleButton.addEventListener('click', () => toggleButtonState(shuffleButton));
-repeatButton.addEventListener('click', () => toggleButtonState(repeatButton));
+
+repeatButton.addEventListener('click', () => {
+    toggleButtonState(repeatButton);
+    isRepeatActive = repeatButton.classList.contains('active');
+});
+
 
 mysong.addEventListener('ended', function () {
-    playNextSong();
+    if (isRepeatActive) {
+        // Repetir la canción actual
+        loadSong(currentSongIndex);
+        playSong();
+    } else {
+        playNextSong();
+    }
 });
 
-mysong.addEventListener("timeupdate", function () {
-    updateCurrentTime();
+mysong.addEventListener('timeupdate', function () {
     updateProgressBar();
+    updateCurrentTime();
 });
+
 
 function toggleButtonState(button) {
     button.classList.toggle('active');
@@ -101,6 +129,7 @@ function playNextSong() {
     loadSong(currentSongIndex);
     playSong();
 }
+
 
 function playPrevSong() {
     currentSongIndex = (currentSongIndex - 1 + allMusic.length) % allMusic.length;
