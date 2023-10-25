@@ -55,16 +55,15 @@ volumeControl.addEventListener("input", handleVolumeControlChange);
 downloadButton.addEventListener("click", downloadCurrentSong);
 volMinIcon.addEventListener('click', toggleMute);
 likeButton.addEventListener('click', () => toggleButtonState(likeButton));
+shuffleButton.addEventListener('click', () => toggleButtonState(shuffleButton));
 
 repeatButton.addEventListener('click', () => {
     toggleButtonState(repeatButton);
     isRepeatActive = repeatButton.classList.contains('active');
 });
 
-
 mysong.addEventListener('ended', function () {
     if (isRepeatActive) {
-        // Repetir la canción actual
         loadSong(currentSongIndex);
         playSong();
     } else {
@@ -241,8 +240,4 @@ function downloadCurrentSong() {
     downloadLink.download = `${currentSong.name}.mp3`;
     downloadLink.click();
     downloadLink.remove();
-}
-
-function printFavoriteSongs() {
-    console.log('Lista de canciones favoritas:', favoriteSongs);
 }
