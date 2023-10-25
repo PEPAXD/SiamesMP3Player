@@ -230,6 +230,10 @@ body {
 .background .coverPageUI .music-player .container .controls .action-button div button:hover {
   color: #B32435;
 }
+.background .coverPageUI .music-player .container .controls .action-button div button:active {
+  transform: scale(0.8);
+  filter: brightness(0.6);
+}
 .background .coverPageUI .music-player .container .controls .action-button div i {
   display: flex;
   justify-content: center;
@@ -279,7 +283,7 @@ footer p a {
   color: #ff334c;
 }
 footer p a:hover {
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 /* Movile */

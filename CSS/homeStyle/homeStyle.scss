@@ -299,6 +299,11 @@
                                     &:hover{
                                         color: #B32435;
                                     }
+
+                                    &:active {
+                                        transform: scale(0.8);
+                                        filter: brightness(0.6);
+                                    }
                                 }
 
                                 i{
@@ -366,7 +371,7 @@
                 color: #ff334c;
 
                 &:hover{
-                    opacity: 0.8;
+                    opacity: 0.5;
                 }
             }
         }

@@ -12,6 +12,9 @@ const timeCountElement = document.getElementById("timeCount");
 const progressBar = document.getElementById("progressBar");
 const volumeControl = document.getElementById("volumeControl");
 const volMinIcon = document.querySelector('.volMin');
+const likeButton = document.getElementById('like');
+const shuffleButton = document.getElementById('shuffle');
+const repeatButton = document.getElementById('repeat');
 
 // checkPlayingSong
 let isPlaying = false;
@@ -34,6 +37,9 @@ progressBar.addEventListener("input", handleProgressBarChange);
 volumeControl.addEventListener("input", handleVolumeControlChange);
 downloadButton.addEventListener("click", downloadCurrentSong);
 volMinIcon.addEventListener('click', toggleMute);
+likeButton.addEventListener('click', () => toggleButtonState(likeButton));
+shuffleButton.addEventListener('click', () => toggleButtonState(shuffleButton));
+repeatButton.addEventListener('click', () => toggleButtonState(repeatButton));
 
 mysong.addEventListener('ended', function () {
     playNextSong();
@@ -43,6 +49,16 @@ mysong.addEventListener("timeupdate", function () {
     updateCurrentTime();
     updateProgressBar();
 });
+
+function toggleButtonState(button) {
+    button.classList.toggle('active');
+
+    if (button.classList.contains('active')) {
+        button.style.color = '#B32435';
+    } else {
+        button.style.color = '';
+    }
+}
 
 function updateVolumeIcon() {
     const volumeIcon = volMinIcon.querySelector('i');
