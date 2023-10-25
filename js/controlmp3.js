@@ -38,9 +38,11 @@ volumeControl.value = 1.0;
 document.documentElement.style.setProperty('--volume', '100%');
 updateVolumeIcon();
 
-// OffButtons
+// Buttons
+const playedSongs = [];
+const totalSongs = allMusic.length;
 let isShuffleActive = false;
-let playedSongs = [];
+
 let isRepeatActive = false;
 
 // callLoadSong
@@ -54,16 +56,62 @@ progressBar.addEventListener("input", handleProgressBarChange);
 volumeControl.addEventListener("input", handleVolumeControlChange);
 downloadButton.addEventListener("click", downloadCurrentSong);
 volMinIcon.addEventListener('click', toggleMute);
-likeButton.addEventListener('click', () => toggleButtonState(likeButton));
-shuffleButton.addEventListener('click', () => toggleButtonState(shuffleButton));
 
+likeButton.addEventListener('click', () => toggleButtonState(likeButton));
+
+// randomizerSong
+shuffleButton.addEventListener('click', () => {
+    if (repeatButton.classList.contains('active')) {
+        toggleButtonState(repeatButton);
+        isRepeatActive = false;
+    }
+    
+    toggleButtonState(shuffleButton);
+    isShuffleActive = shuffleButton.classList.contains('active');
+
+    if (isShuffleActive) {
+        repeatButton.classList.remove('active');
+        isRepeatActive = false;
+        repeatButton.style.color = '';
+    }
+});
+
+// RepeatSong
 repeatButton.addEventListener('click', () => {
+    if (shuffleButton.classList.contains('active')) {
+        toggleButtonState(shuffleButton);
+        isShuffleActive = false;
+    }
+
     toggleButtonState(repeatButton);
     isRepeatActive = repeatButton.classList.contains('active');
+
+    if (isRepeatActive) {
+        shuffleButton.classList.remove('active');
+        isShuffleActive = false;
+        shuffleButton.style.color = '';
+    }
 });
+
+
 
 mysong.addEventListener('ended', function () {
     if (isRepeatActive) {
+        loadSong(currentSongIndex);
+        playSong();
+    } else if (isShuffleActive) {
+        playedSongs.push(currentSongIndex);
+
+        if (playedSongs.length === totalSongs) {
+            playedSongs.length = 0;
+        }
+
+        let newIndex;
+        do {
+            newIndex = Math.floor(Math.random() * totalSongs);
+        } while (playedSongs.includes(newIndex));
+
+        currentSongIndex = newIndex;
         loadSong(currentSongIndex);
         playSong();
     } else {

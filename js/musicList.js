@@ -54,93 +54,93 @@ let allMusic = [
     src: "noHoney"
 },
 {
-name: "gimme some sweet",
-art:  "GimmeSweet.jpg",
-disc: "bounce into the music",
-src: "gimmeSomeSweet"
+    name: "gimme some sweet",
+    art:  "GimmeSweet.jpg",
+    disc: "bounce into the music",
+    src: "gimmeSomeSweet"
 },
 {
-name: "home",
-art:  "Home.jpg",
-disc: "home",
-src: "home"
+    name: "home",
+    art:  "Home.jpg",
+    disc: "home",
+    src: "home"
 },
 {
-name: "no lullaby",
-art:  "noLullaby.jpg",
-disc: "home",
-src: "noLullaby"
+    name: "no lullaby",
+    art:  "noLullaby.jpg",
+    disc: "home",
+    src: "noLullaby"
 },
 {
-name: "i can't wait",
-art:  "ICantWait.jpg",
-disc: "home",
-src: "ICantWait"
+    name: "i can't wait",
+    art:  "ICantWait.jpg",
+    disc: "home",
+    src: "ICantWait"
 },
 {
-name: "summer nights",
-art:  "SummerNights.jpg",
-disc: "home",
-src: "summerNights"
+    name: "summer nights",
+    art:  "SummerNights.jpg",
+    disc: "home",
+    src: "summerNights"
 },
 {
-name: "brothers",
-art:  "siamesArt10.jpg",
-disc: "home",
-src: "brothers"
+    name: "brothers",
+    art:  "siamesArt10.jpg",
+    disc: "home",
+    src: "brothers"
 },
 {
-name: "easier",
-art:  "Easier.jpg",
-disc: "home",
-src: "Easier"
+    name: "easier",
+    art:  "Easier.jpg",
+    disc: "home",
+    src: "Easier"
 },
 {
-name: "young & restless",
-art:  "YoungRestless.jpg",
-disc: "home",
-src: "YoungRestless"
+    name: "young & restless",
+    art:  "YoungRestless.jpg",
+    disc: "home",
+    src: "YoungRestless"
 },
 {
-name: "2 feathers",
-art:  "siamesArt9.jpg",
-disc: "home",
-src: "2Feathers"
+    name: "2 feathers",
+    art:  "siamesArt9.jpg",
+    disc: "home",
+    src: "2Feathers"
 },
 {
-name: "the protected",
-art:  "siamesArt4.jpg",
-disc: "home",
-src: "TheProtected"
+    name: "the protected",
+    art:  "siamesArt4.jpg",
+    disc: "home",
+    src: "TheProtected"
 },
 {
-name: "underground",
-art:  "Underground.jpg",
-disc: "always the same",
-src: "underground"
+    name: "underground",
+    art:  "Underground.jpg",
+    disc: "always the same",
+    src: "underground"
 },
 {
-name: "always the same",
-art:  "AlwaysTheSame.jpg",
-disc: "always the same",
-src: "AlwaysTheSame"
+    name: "always the same",
+    art:  "AlwaysTheSame.jpg",
+    disc: "always the same",
+    src: "AlwaysTheSame"
 },
 {
-name: "my way",
-art:  "MyWay.jpg",
-disc: "always the same",
-src: "MyWay"
+    name: "my way",
+    art:  "MyWay.jpg",
+    disc: "always the same",
+    src: "MyWay"
 },
 {
-name: "frozen heart",
-art:  "FrozenHeart.jpg",
-disc: "always the same",
-src: "FrozenHeart"
+    name: "frozen heart",
+    art:  "FrozenHeart.jpg",
+    disc: "always the same",
+    src: "FrozenHeart"
 },
 {
-name: "all the best",
-art:  "AllTheBest.jpg",
-disc: "always the same",
-src: "AllTheBest"
+    name: "all the best",
+    art:  "AllTheBest.jpg",
+    disc: "always the same",
+    src: "AllTheBest"
 },
 ];
