@@ -172,16 +172,48 @@ function pauseSong() {
 }
 
 function playNextSong() {
-    currentSongIndex = (currentSongIndex + 1) % allMusic.length;
-    loadSong(currentSongIndex);
-    playSong();
+    if (isShuffleActive) {
+        playedSongs.push(currentSongIndex);
+
+        if (playedSongs.length === totalSongs) {
+            playedSongs.length = 0;
+        }
+
+        let newIndex;
+        do {
+            newIndex = Math.floor(Math.random() * totalSongs);
+        } while (playedSongs.includes(newIndex));
+
+        currentSongIndex = newIndex;
+        loadSong(currentSongIndex);
+        playSong();
+    } else {
+        currentSongIndex = (currentSongIndex + 1) % allMusic.length;
+        loadSong(currentSongIndex);
+        playSong();
+    }
 }
 
 
 function playPrevSong() {
-    currentSongIndex = (currentSongIndex - 1 + allMusic.length) % allMusic.length;
-    loadSong(currentSongIndex);
-    playSong();
+    if (isShuffleActive) {
+        if (playedSongs.length === 0) {
+            playedSongs.push(currentSongIndex);
+        }
+
+        let newIndex;
+        do {
+            newIndex = playedSongs.pop();
+        } while (newIndex === currentSongIndex);
+
+        currentSongIndex = newIndex;
+        loadSong(currentSongIndex);
+        playSong();
+    } else {
+        currentSongIndex = (currentSongIndex - 1 + allMusic.length) % allMusic.length;
+        loadSong(currentSongIndex);
+        playSong();
+    }
 }
 
 function loadSong(index) {
