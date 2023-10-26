@@ -1,323 +1,323 @@
-// get ID
-const mysong = document.getElementById("mysong");
-const songCountButton = document.getElementById("songCount");
-
-// mainButtons
-const playButton = document.getElementById("playButton");
-const nextButton = document.getElementById("nextButton");
-const prevButton = document.getElementById("prevButton");
-
-// dataSong
-const songTitleElement = document.getElementById("songTitle");
-const songAlbumElement = document.getElementById("songAlbum");
-const artSong = document.querySelector(".album-art");
-
-// AuxButtons
-const downloadButton = document.getElementById("downloadButton");
-
-// BarSong
-const timeCountElement = document.getElementById("timeCount");
-const progressBar = document.getElementById("progressBar");
-
-// VolButtons
-const volumeControl = document.getElementById("volumeControl");
-const volMinIcon = document.querySelector('.volMin');
-
-// ActionButtons
-const likeButton = document.getElementById('like');
-const shuffleButton = document.getElementById('shuffle');
-const repeatButton = document.getElementById('repeat');
-
-// LoadSongArray
-let isPlaying = false;
-let currentSongIndex = 0;
-
-// VolMax
-mysong.volume = 1.0;
-volumeControl.value = 1.0;
-document.documentElement.style.setProperty('--volume', '100%');
-updateVolumeIcon();
-
-// Buttons
-const playedSongs = [];
-const totalSongs = allMusic.length;
-let isShuffleActive = false;
-
-let isRepeatActive = false;
-
-// callLoadSong
-loadSong(currentSongIndex);
-
-// clickEvents
-playButton.addEventListener("click", togglePlayPause);
-nextButton.addEventListener("click", playNextSong);
-prevButton.addEventListener("click", playPrevSong);
-progressBar.addEventListener("input", handleProgressBarChange);
-volumeControl.addEventListener("input", handleVolumeControlChange);
-downloadButton.addEventListener("click", downloadCurrentSong);
-volMinIcon.addEventListener('click', toggleMute);
-
-likeButton.addEventListener('click', () => toggleButtonState(likeButton));
-
-// randomizerSong
-shuffleButton.addEventListener('click', () => {
-    if (repeatButton.classList.contains('active')) {
-        toggleButtonState(repeatButton);
-        isRepeatActive = false;
-    }
+    const player = {
+        mysong: document.getElementById("mysong"),
+        songCountButton: document.getElementById("songCount"),
+        playButton: document.getElementById("playButton"),
+        nextButton: document.getElementById("nextButton"),
+        prevButton: document.getElementById("prevButton"),
+        songTitleElement: document.getElementById("songTitle"),
+        songAlbumElement: document.getElementById("songAlbum"),
+        artSong: document.querySelector(".album-art"),
+        downloadButton: document.getElementById("downloadButton"),
+        timeCountElement: document.getElementById("timeCount"),
+        progressBar: document.getElementById("progressBar"),
+        volumeControl: document.getElementById("volumeControl"),
+        volMinIcon: document.querySelector('.volMin'),
+        likeButton: document.getElementById('like'),
+        shuffleButton: document.getElementById('shuffle'),
+        repeatButton: document.getElementById('repeat'),
+    };
     
-    toggleButtonState(shuffleButton);
-    isShuffleActive = shuffleButton.classList.contains('active');
-
-    if (isShuffleActive) {
-        repeatButton.classList.remove('active');
-        isRepeatActive = false;
-        repeatButton.style.color = '';
-    }
-});
-
-// RepeatSong
-repeatButton.addEventListener('click', () => {
-    if (shuffleButton.classList.contains('active')) {
-        toggleButtonState(shuffleButton);
-        isShuffleActive = false;
-    }
-
-    toggleButtonState(repeatButton);
-    isRepeatActive = repeatButton.classList.contains('active');
-
-    if (isRepeatActive) {
-        shuffleButton.classList.remove('active');
-        isShuffleActive = false;
-        shuffleButton.style.color = '';
-    }
-});
-
-
-
-mysong.addEventListener('ended', function () {
-    if (isRepeatActive) {
-        loadSong(currentSongIndex);
-        playSong();
-    } else if (isShuffleActive) {
-        playedSongs.push(currentSongIndex);
-
-        if (playedSongs.length === totalSongs) {
-            playedSongs.length = 0;
-        }
-
-        let newIndex;
-        do {
-            newIndex = Math.floor(Math.random() * totalSongs);
-        } while (playedSongs.includes(newIndex));
-
-        currentSongIndex = newIndex;
-        loadSong(currentSongIndex);
-        playSong();
-    } else {
-        playNextSong();
-    }
-});
-
-mysong.addEventListener('timeupdate', function () {
-    updateProgressBar();
-    updateCurrentTime();
-});
-
-
-function toggleButtonState(button) {
-    button.classList.toggle('active');
-
-    if (button.classList.contains('active')) {
-        button.style.color = '#B32435';
-    } else {
-        button.style.color = '';
-    }
-}
-
-function updateVolumeIcon() {
-    const volumeIcon = volMinIcon.querySelector('i');
-
-    if (volumeControl.value == 0) {
-        volumeIcon.className = 'fas fa-volume-xmark';
-    } else if (volumeControl.value <= 0.2) {
-        volumeIcon.className = 'fas fa-volume-off';
-    } else if (volumeControl.value <= 0.5) {
-        volumeIcon.className = 'fas fa-volume-low';
-    } else {
-        volumeIcon.className = 'fas fa-volume-high';
-    }
-}
-
-function togglePlayPause() {
-    if (mysong.paused) {
-        playSong();
-    } else {
-        pauseSong();
-    }
-}
-
-function playSong() {
-    mysong.play().catch(function (error) {
-        console.error("Error al reproducir el audio:", error);
-    });
-    playButton.innerHTML = '<i class="fa-regular fa-circle-pause"></i>';
-    isPlaying = true;
-}
-
-function pauseSong() {
-    mysong.pause();
-    playButton.innerHTML = '<i class="fa-regular fa-circle-play"></i>';
-    isPlaying = false;
-}
-
-function playNextSong() {
-    if (isShuffleActive) {
-        playedSongs.push(currentSongIndex);
-
-        if (playedSongs.length === totalSongs) {
-            playedSongs.length = 0;
-        }
-
-        let newIndex;
-        do {
-            newIndex = Math.floor(Math.random() * totalSongs);
-        } while (playedSongs.includes(newIndex));
-
-        currentSongIndex = newIndex;
-        loadSong(currentSongIndex);
-        playSong();
-    } else {
-        currentSongIndex = (currentSongIndex + 1) % allMusic.length;
-        loadSong(currentSongIndex);
-        playSong();
-    }
-}
-
-
-function playPrevSong() {
-    if (isShuffleActive) {
-        if (playedSongs.length === 0) {
-            playedSongs.push(currentSongIndex);
-        }
-
-        let newIndex;
-        do {
-            newIndex = playedSongs.pop();
-        } while (newIndex === currentSongIndex);
-
-        currentSongIndex = newIndex;
-        loadSong(currentSongIndex);
-        playSong();
-    } else {
-        currentSongIndex = (currentSongIndex - 1 + allMusic.length) % allMusic.length;
-        loadSong(currentSongIndex);
-        playSong();
-    }
-}
-
-function loadSong(index) {
-    const song = allMusic[index];
-    const wasPlaying = isPlaying;
-
-    mysong.src = `songs/${song.src}.mp3`;
-    isPlaying = wasPlaying;
-
-    if (isPlaying) {
-        playSong();
-    }
-
-    songTitleElement.innerHTML = `<span>${song.name}</span>`;
-    songAlbumElement.innerHTML = `<span>${song.disc}</span>`;
-    playButton.innerHTML = isPlaying ? '<i class="fa-regular fa-circle-pause"></i>' : '<i class="fa-regular fa-circle-play"></i>';
-    artSong.style.backgroundImage = `url('DiscArt/${song.art}')`;
-    updateSongCount();
+    const state = {
+        isPlaying: false,
+        currentSongIndex: 0,
+        isShuffleActive: false,
+        isRepeatActive: false,
+        playedSongs: [],
+        likeMusic: [],
+    };
     
-}
-
-function updateSongCount() {
+    // VolMax
+    player.mysong.volume = 1.0;
+    player.volumeControl.value = 1.0;
+    document.documentElement.style.setProperty('--volume', '100%');
+    updateVolumeIcon();
+    
+    // Buttons
     const totalSongs = allMusic.length;
-    songCountButton.textContent = `${currentSongIndex + 1}/${totalSongs}`;
-}
-
-function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const secondsRemaining = Math.floor(seconds % 60);
-    return `${minutes}:${secondsRemaining < 10 ? '0' : ''}${secondsRemaining}`;
-}
-
-function handleProgressBarChange() {
-    const duration = mysong.duration;
-    const newPosition = (progressBar.value / 100) * duration;
-    mysong.currentTime = newPosition;
-}
-
-function updateProgressBar() {
-    const currentTime = mysong.currentTime;
-    const duration = mysong.duration;
-
-    if (!isNaN(currentTime) && !isNaN(duration)) {
-        const progress = (currentTime / duration) * 100;
-        progressBar.value = progress;
-        progressBar.style.setProperty('--progress', `${progress}%`);
+    
+    // callLoadSong
+    loadSong(state.currentSongIndex);
+    
+    // clickEvents
+    player.playButton.addEventListener("click", togglePlayPause);
+    player.nextButton.addEventListener("click", playNextSong);
+    player.prevButton.addEventListener("click", playPrevSong);
+    player.progressBar.addEventListener("input", handleProgressBarChange);
+    player.volumeControl.addEventListener("input", handleVolumeControlChange);
+    player.downloadButton.addEventListener("click", downloadCurrentSong);
+    player.volMinIcon.addEventListener('click', toggleMute);
+    
+    // LikeSong
+    player.likeButton.addEventListener('click', handleLikeButtonClick);
+    
+    // randomizerSong
+    player.shuffleButton.addEventListener('click', toggleShuffle);
+    
+    // RepeatSong
+    player.repeatButton.addEventListener('click', toggleRepeat);
+    
+    player.mysong.addEventListener('ended', handleSongEnded);
+    player.mysong.addEventListener('timeupdate', handleTimeUpdate);
+    
+    function toggleButtonState(button) {
+        button.classList.toggle('active');
+        button.style.color = button.classList.contains('active') ? '#B32435' : '';
     }
-}
-
-function updateCurrentTime() {
-    const currentTimeElement = document.querySelector(".currentTime .start");
-    const endTimeElement = document.querySelector(".currentTime .end");
-    const duration = mysong.duration;
-    const currentTime = mysong.currentTime;
-
-    if (isNaN(currentTime) || isNaN(duration)) {
+    
+    function updateVolumeIcon() {
+        const volumeIcon = player.volMinIcon.querySelector('i');
+        const { value } = player.volumeControl;
+    
+        if (value === 0) {
+        volumeIcon.className = 'fas fa-volume-xmark';
+        } else if (value <= 0.2) {
+        volumeIcon.className = 'fas fa-volume-off';
+        } else if (value <= 0.5) {
+        volumeIcon.className = 'fas fa-volume-low';
+        } else {
+        volumeIcon.className = 'fas fa-volume-high';
+        }
+    }
+    
+    function togglePlayPause() {
+        state.isPlaying ? pauseSong() : playSong();
+    }
+    
+    function playSong() {
+        player.mysong.play().catch(error => {
+        console.error("Error al reproducir el audio:", error);
+        });
+        player.playButton.innerHTML = '<i class="fa-regular fa-circle-pause"></i>';
+        state.isPlaying = true;
+    }
+    
+    function pauseSong() {
+        player.mysong.pause();
+        player.playButton.innerHTML = '<i class="fa-regular fa-circle-play"></i>';
+        state.isPlaying = false;
+    }
+    
+    function playNextSong() {
+        if (state.isShuffleActive) {
+        state.playedSongs.push(state.currentSongIndex);
+    
+        if (state.playedSongs.length === totalSongs) {
+            state.playedSongs.length = 0;
+        }
+    
+        let newIndex;
+        do {
+            newIndex = Math.floor(Math.random() * totalSongs);
+        } while (state.playedSongs.includes(newIndex));
+    
+        state.currentSongIndex = newIndex;
+        loadSong(state.currentSongIndex);
+        playSong();
+        } else {
+        state.currentSongIndex = (state.currentSongIndex + 1) % allMusic.length;
+        loadSong(state.currentSongIndex);
+        playSong();
+        }
+    }
+    
+    function playPrevSong() {
+        if (state.isShuffleActive) {
+        if (state.playedSongs.length === 0) {
+            state.playedSongs.push(state.currentSongIndex);
+        }
+    
+        let newIndex;
+        do {
+            newIndex = state.playedSongs.pop();
+        } while (newIndex === state.currentSongIndex);
+    
+        state.currentSongIndex = newIndex;
+        loadSong(state.currentSongIndex);
+        playSong();
+        } else {
+        state.currentSongIndex = (state.currentSongIndex - 1 + allMusic.length) % allMusic.length;
+        loadSong(state.currentSongIndex);
+        playSong();
+        }
+    }
+    
+    function loadSong(index) {
+        const song = allMusic[index];
+        const wasPlaying = state.isPlaying;
+    
+        player.mysong.src = `songs/${song.src}.mp3`;
+        state.isPlaying = wasPlaying;
+    
+        const indexInLikeMusic = state.likeMusic.findIndex(likedSong => likedSong.src === song.src);
+        player.likeButton.style.color = indexInLikeMusic !== -1 ? '#B32435' : '';
+        if (state.isPlaying) playSong();
+    
+        player.songTitleElement.innerHTML = `<span>${song.name}</span>`;
+        player.songAlbumElement.innerHTML = `<span>${song.disc}</span>`;
+        player.playButton.innerHTML = state.isPlaying ? '<i class="fa-regular fa-circle-pause"></i>' : '<i class="fa-regular fa-circle-play"></i>';
+        player.artSong.style.backgroundImage = `url('DiscArt/${song.art}')`;
+        updateSongCount();
+    }
+    
+    function updateSongCount() {
+        player.songCountButton.textContent = `${state.currentSongIndex + 1}/${totalSongs}`;
+    }
+    
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secondsRemaining = Math.floor(seconds % 60);
+        return `${minutes}:${secondsRemaining < 10 ? '0' : ''}${secondsRemaining}`;
+    }
+    
+    function handleProgressBarChange() {
+        const duration = player.mysong.duration;
+        const newPosition = (player.progressBar.value / 100) * duration;
+        player.mysong.currentTime = newPosition;
+    }
+    
+    function updateProgressBar() {
+        const currentTime = player.mysong.currentTime;
+        const duration = player.mysong.duration;
+    
+        if (!isNaN(currentTime) && !isNaN(duration)) {
+        const progress = (currentTime / duration) * 100;
+        player.progressBar.value = progress;
+        player.progressBar.style.setProperty('--progress', `${progress}%`);
+        }
+    }
+    
+    function updateCurrentTime() {
+        const currentTimeElement = document.querySelector(".currentTime .start");
+        const endTimeElement = document.querySelector(".currentTime .end");
+        const duration = player.mysong.duration;
+        const currentTime = player.mysong.currentTime;
+    
+        if (isNaN(currentTime) || isNaN(duration)) {
         currentTimeElement.textContent = '0:00';
         endTimeElement.textContent = '0:00';
-    } else {
+        } else {
         currentTimeElement.textContent = formatTime(currentTime);
         endTimeElement.textContent = formatTime(duration);
+        }
     }
-}
-
-function handleVolumeControlChange() {
-    const volume = volumeControl.value;
-    mysong.volume = volume;
-    document.documentElement.style.setProperty('--volume', volume * 100 + '%');
-    updateVolumeIcon();
-}
-
-function toggleMute() {
-    if (mysong.volume === 0) {
+    
+    function handleVolumeControlChange() {
+        const volume = player.volumeControl.value;
+        player.mysong.volume = volume;
+        document.documentElement.style.setProperty('--volume', volume * 100 + '%');
+        updateVolumeIcon();
+    }
+    
+    function toggleMute() {
+        if (player.mysong.volume === 0) {
         unmuteSong();
-    } else {
+        } else {
         muteSong();
+        }
     }
-}
-
-function muteSong() {
-    mysong.volume = 0;
-    volumeControl.setAttribute("data-css", volumeControl.value);
-    volumeControl.value = 0;
-    volumeControl.classList.add('muted');
-    volumeControl.classList.add('disabled');
-    document.documentElement.style.setProperty('--volume', '0%');
-    updateVolumeIcon();
-}
-
-function unmuteSong() {
-    const savedVolume = volumeControl.getAttribute("data-css");
-    mysong.volume = savedVolume;
-    volumeControl.value = savedVolume;
-    volumeControl.classList.remove('muted');
-    volumeControl.classList.remove('disabled');
-    document.documentElement.style.setProperty('--volume', savedVolume * 100 + '%');
-    updateVolumeIcon();
-}
-
-function downloadCurrentSong() {
-    const currentSong = allMusic[currentSongIndex];
-    const downloadLink = document.createElement("a");
-    downloadLink.href = `songs/${currentSong.src}.mp3`;
-    downloadLink.download = `${currentSong.name}.mp3`;
-    downloadLink.click();
-    downloadLink.remove();
-}
+    
+    function muteSong() {
+        player.mysong.volume = 0;
+        player.volumeControl.setAttribute("data-css", player.volumeControl.value);
+        player.volumeControl.value = 0;
+        player.volumeControl.classList.add('muted');
+        player.volumeControl.classList.add('disabled');
+        document.documentElement.style.setProperty('--volume', '0%');
+        updateVolumeIcon();
+    }
+    
+    function unmuteSong() {
+        const savedVolume = player.volumeControl.getAttribute("data-css");
+        player.mysong.volume = savedVolume;
+        player.volumeControl.value = savedVolume;
+        player.volumeControl.classList.remove('muted');
+        player.volumeControl.classList.remove('disabled');
+        document.documentElement.style.setProperty('--volume', savedVolume * 100 + '%');
+        updateVolumeIcon();
+    }
+    
+    function downloadCurrentSong() {
+        const currentSong = allMusic[state.currentSongIndex];
+        const downloadLink = document.createElement("a");
+        downloadLink.href = `songs/${currentSong.src}.mp3`;
+        downloadLink.download = `${currentSong.name}.mp3`;
+        downloadLink.click();
+        downloadLink.remove();
+    }
+    
+    function handleLikeButtonClick() {
+        const currentSong = allMusic[state.currentSongIndex];
+        const index = state.likeMusic.findIndex(song => song.src === currentSong.src);
+        
+        if (index !== -1) {
+        state.likeMusic.splice(index, 1);
+        player.likeButton.style.color = '';
+        } else {
+        state.likeMusic.push(currentSong);
+        player.likeButton.style.color = '#B32435';
+        }
+        
+        console.log('likeMusic:', state.likeMusic);
+    }
+    
+    function toggleShuffle() {
+        if (state.isRepeatActive) {
+        toggleButtonState(player.repeatButton);
+        state.isRepeatActive = false;
+        }
+        
+        toggleButtonState(player.shuffleButton);
+        state.isShuffleActive = player.shuffleButton.classList.contains('active');
+        
+        if (state.isShuffleActive) {
+        player.repeatButton.classList.remove('active');
+        state.isRepeatActive = false;
+        player.repeatButton.style.color = '';
+        }
+    }
+    
+    function toggleRepeat() {
+        if (state.isShuffleActive) {
+        toggleButtonState(player.shuffleButton);
+        state.isShuffleActive = false;
+        }
+    
+        toggleButtonState(player.repeatButton);
+        state.isRepeatActive = player.repeatButton.classList.contains('active');
+    
+        if (state.isRepeatActive) {
+        player.shuffleButton.classList.remove('active');
+        state.isShuffleActive = false;
+        player.shuffleButton.style.color = '';
+        }
+    }
+    
+    function handleSongEnded() {
+        if (state.isRepeatActive) {
+        loadSong(state.currentSongIndex);
+        playSong();
+        } else if (state.isShuffleActive) {
+        state.playedSongs.push(state.currentSongIndex);
+    
+        if (state.playedSongs.length === totalSongs) {
+            state.playedSongs.length = 0;
+        }
+    
+        let newIndex;
+        do {
+            newIndex = Math.floor(Math.random() * totalSongs);
+        } while (state.playedSongs.includes(newIndex));
+    
+        state.currentSongIndex = newIndex;
+        loadSong(state.currentSongIndex);
+        playSong();
+        } else {
+        playNextSong();
+        }
+    }
+    
+    function handleTimeUpdate() {
+        updateProgressBar();
+        updateCurrentTime();
+    }
+    
