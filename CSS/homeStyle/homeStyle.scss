@@ -130,17 +130,71 @@
 
                         border: 2px solid #000;
     
-    
                         .current-info{
                             position: absolute;
                             text-align: start;
+                            overflow: hidden;
 
                             width: 98%;
+                            height: 2.5rem;
                             bottom: 0;
                             margin: 0.1rem;
                             padding: 0.2rem 0.5rem;
                             
-                            background-image: linear-gradient(to right, rgba(179, 36, 53, 1) 20%, transparent); 
+                            background-image: linear-gradient(to right, rgba(179, 36, 53, 1), transparent); 
+
+                            transition: height 0.3s ease;
+
+                            .menuSong{
+                                margin-top: 0.5rem;
+                                height: 80%;
+
+                                
+
+                                overflow-y: auto;
+                                scrollbar-width: thin;
+
+
+                                &::-webkit-scrollbar {
+                                width: 6px;
+
+                                }
+
+                                &::-webkit-scrollbar-thumb {
+                                background-color: #B32435;
+
+                                }
+
+                                &::-webkit-scrollbar-track {
+                                background-color: #fff;                          
+                                }
+
+                                .element {
+                                    color: #fff;
+                                    font-size: .8em;
+                                    padding: 6px 15px;
+                                    border-left: 2px solid grey;
+                                    
+
+
+                                    cursor: pointer;
+
+                                    &.active {
+                                        width: 90%;
+                                        background-image: linear-gradient(to right, #4682B4 50%, transparent); 
+                                        border-left: 2px solid #8cb4ff;
+                                        color: azure;
+                                    }
+
+                                    &:hover:not(.active) {
+                                        opacity: (0.4);
+                                    }
+                                }
+                            }
+                            
+                            &.expanded {
+                                height: 99%;
+                            }
     
                             figcaption {
                                 display: flex;
@@ -160,6 +214,7 @@
                                     }
                                 }
                             }
+                            
                         }
                     }
     

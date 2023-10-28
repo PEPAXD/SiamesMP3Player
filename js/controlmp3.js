@@ -15,6 +15,9 @@
         likeButton: document.getElementById('like'),
         shuffleButton: document.getElementById('shuffle'),
         repeatButton: document.getElementById('repeat'),
+        menuButton: document.getElementById("menuButton"),
+        currentInfo: document.querySelector(".current-info"),
+        menuSong: document.querySelector(".menuSong"),
     };
     
     const state = {
@@ -25,7 +28,7 @@
         playedSongs: [],
         likeMusic: [],
     };
-    
+
     // VolMax
     player.mysong.volume = 1.0;
     player.volumeControl.value = 1.0;
@@ -56,8 +59,66 @@
     // RepeatSong
     player.repeatButton.addEventListener('click', toggleRepeat);
     
+    // TimeSong
     player.mysong.addEventListener('ended', handleSongEnded);
     player.mysong.addEventListener('timeupdate', handleTimeUpdate);
+
+    // SongList
+    player.menuButton.addEventListener("click", () => {
+        player.currentInfo.classList.toggle("expanded");
+        updatePlaylist();
+    
+        const menuSong = document.querySelector(".menuSong");
+        menuSong.innerHTML = '';
+    
+        allMusic.forEach((song, index) => {
+            const songName = song.name;
+            const pElement = document.createElement("p");
+            pElement.classList.add("element");
+            pElement.textContent = songName;
+    
+            if (index === state.currentSongIndex) {
+                pElement.classList.add("active");
+            }
+    
+            pElement.addEventListener("click", () => {
+                state.currentSongIndex = index;
+                loadSong(state.currentSongIndex);
+                playSong();
+                updatePlaylist();
+            });
+    
+            menuSong.appendChild(pElement);
+        });
+    });
+
+    updatePlaylist();
+        
+    
+    function updatePlaylist() {
+        const menuSong = document.querySelector(".menuSong");
+        menuSong.innerHTML = '';
+    
+        allMusic.forEach((song, index) => {
+            const songName = song.name;
+            const pElement = document.createElement("p");
+            pElement.classList.add("element");
+            pElement.textContent = songName;
+    
+            if (index === state.currentSongIndex) {
+                pElement.classList.add("active");
+            }
+    
+            pElement.addEventListener("click", () => {
+                state.currentSongIndex = index;
+                loadSong(state.currentSongIndex);
+                playSong();
+                updatePlaylist();
+            });
+    
+            menuSong.appendChild(pElement);
+        });
+    }
     
     function toggleButtonState(button) {
         button.classList.toggle('active');
@@ -157,6 +218,7 @@
         player.playButton.innerHTML = state.isPlaying ? '<i class="fa-regular fa-circle-pause"></i>' : '<i class="fa-regular fa-circle-play"></i>';
         player.artSong.style.backgroundImage = `url('DiscArt/${song.art}')`;
         updateSongCount();
+        updatePlaylist();
     }
     
     function updateSongCount() {

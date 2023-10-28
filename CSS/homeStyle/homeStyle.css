@@ -102,11 +102,48 @@ body {
 .background .coverPageUI .music-player .container .album-art .current-info {
   position: absolute;
   text-align: start;
+  overflow: hidden;
   width: 98%;
+  height: 2.5rem;
   bottom: 0;
   margin: 0.1rem;
   padding: 0.2rem 0.5rem;
-  background-image: linear-gradient(to right, rgb(179, 36, 53) 20%, transparent);
+  background-image: linear-gradient(to right, rgb(179, 36, 53), transparent);
+  transition: height 0.3s ease;
+}
+.background .coverPageUI .music-player .container .album-art .current-info .menuSong {
+  margin-top: 0.5rem;
+  height: 80%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.background .coverPageUI .music-player .container .album-art .current-info .menuSong::-webkit-scrollbar {
+  width: 6px;
+}
+.background .coverPageUI .music-player .container .album-art .current-info .menuSong::-webkit-scrollbar-thumb {
+  background-color: #B32435;
+}
+.background .coverPageUI .music-player .container .album-art .current-info .menuSong::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+.background .coverPageUI .music-player .container .album-art .current-info .menuSong .element {
+  color: #fff;
+  font-size: 0.8em;
+  padding: 6px 15px;
+  border-left: 2px solid grey;
+  cursor: pointer;
+}
+.background .coverPageUI .music-player .container .album-art .current-info .menuSong .element.active {
+  width: 90%;
+  background-image: linear-gradient(to right, #4682B4 50%, transparent);
+  border-left: 2px solid #8cb4ff;
+  color: azure;
+}
+.background .coverPageUI .music-player .container .album-art .current-info .menuSong .element:hover:not(.active) {
+  opacity: 0.4;
+}
+.background .coverPageUI .music-player .container .album-art .current-info.expanded {
+  height: 99%;
 }
 .background .coverPageUI .music-player .container .album-art .current-info figcaption {
   display: flex;
