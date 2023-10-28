@@ -117,6 +117,16 @@
             });
     
             menuSong.appendChild(pElement);
+
+            // Focus element active
+            if (state.currentSongIndex === index) {
+                
+                const activeElement = menuSong.querySelector(".element.active");
+                if (activeElement) {
+                    const elementOffset = activeElement.offsetTop;
+                    menuSong.scrollTop = elementOffset - (menuSong.clientHeight / 2);
+                }
+            }
         });
     }
     
@@ -219,6 +229,7 @@
         player.artSong.style.backgroundImage = `url('DiscArt/${song.art}')`;
         updateSongCount();
         updatePlaylist();
+        
     }
     
     function updateSongCount() {
