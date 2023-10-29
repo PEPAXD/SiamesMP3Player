@@ -1,7 +1,7 @@
 # SIAMES.mp3 Music Player Project
 
 ## Deploy GitHub-Page
-[https://pepaxd.github.io/](https://pepaxd.github.io/RockOnTicket/)
+https://pepaxd.github.io/SiamesMP3Player/
 
 This is an interactive music player project that uses HTML, CSS, and JavaScript to allow users to play, pause, skip songs, adjust the volume, and more. 
 The music player is part of a website called SIAMES.mp3.
