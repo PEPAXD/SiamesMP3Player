@@ -49,17 +49,9 @@
     player.volumeControl.addEventListener("input", handleVolumeControlChange);
     player.downloadButton.addEventListener("click", downloadCurrentSong);
     player.volMinIcon.addEventListener('click', toggleMute);
-    
-    // LikeSong
     player.likeButton.addEventListener('click', handleLikeButtonClick);
-    
-    // randomizerSong
     player.shuffleButton.addEventListener('click', toggleShuffle);
-    
-    // RepeatSong
     player.repeatButton.addEventListener('click', toggleRepeat);
-    
-    // TimeSong
     player.mysong.addEventListener('ended', handleSongEnded);
     player.mysong.addEventListener('timeupdate', handleTimeUpdate);
 
@@ -69,32 +61,17 @@
         updatePlaylist();
     
         const menuSong = document.querySelector(".menuSong");
-        menuSong.innerHTML = '';
+        menuSong.classList.toggle("active");
     
-        allMusic.forEach((song, index) => {
-            const songName = song.name;
-            const pElement = document.createElement("p");
-            pElement.classList.add("element");
-            pElement.textContent = songName;
-    
-            if (index === state.currentSongIndex) {
-                pElement.classList.add("active");
-            }
-    
-            pElement.addEventListener("click", () => {
-                state.currentSongIndex = index;
-                loadSong(state.currentSongIndex);
-                playSong();
-                updatePlaylist();
-            });
-    
-            menuSong.appendChild(pElement);
-        });
+        if (menuSong.classList.contains("active")) {
+            menuButtonIcon.className = "fa-solid fa-chevron-down";
+        } else {
+            menuButtonIcon.className = "fas fa-bars";
+        }
     });
 
     updatePlaylist();
         
-    
     function updatePlaylist() {
         const menuSong = document.querySelector(".menuSong");
         menuSong.innerHTML = '';
@@ -109,6 +86,7 @@
                 pElement.classList.add("active");
             }
     
+            // Agrega el evento de clic a cada elemento
             pElement.addEventListener("click", () => {
                 state.currentSongIndex = index;
                 loadSong(state.currentSongIndex);
@@ -116,19 +94,27 @@
                 updatePlaylist();
             });
     
-            menuSong.appendChild(pElement);
-
-            // Focus element active
-            if (state.currentSongIndex === index) {
-                
-                const activeElement = menuSong.querySelector(".element.active");
-                if (activeElement) {
-                    const elementOffset = activeElement.offsetTop;
-                    menuSong.scrollTop = elementOffset - (menuSong.clientHeight / 2);
-                }
+            // Agrega un corazón si la canción está en la lista de "likeMusic"
+            if (state.likeMusic.some(likedSong => likedSong.src === song.src)) {
+                const heartIcon = document.createElement("i");
+                heartIcon.classList.add("fa-solid", "fa-heart");
+                pElement.appendChild(heartIcon);
             }
+    
+            menuSong.appendChild(pElement);
         });
+    
+        // Luego de crear los elementos y los eventos de clic, actualiza el desplazamiento
+        if (state.currentSongIndex >= 0) {
+            const activeElement = menuSong.querySelector(".element.active");
+            if (activeElement) {
+                const elementOffset = activeElement.offsetTop;
+                menuSong.scrollTop = elementOffset - (menuSong.clientHeight / 2);
+            }
+        }
     }
+    
+    
     
     function toggleButtonState(button) {
         button.classList.toggle('active');
@@ -330,7 +316,7 @@
         player.likeButton.style.color = '#B32435';
         }
         
-        console.log('likeMusic:', state.likeMusic);
+        updatePlaylist();
     }
     
     function toggleShuffle() {
@@ -393,4 +379,3 @@
         updateProgressBar();
         updateCurrentTime();
     }
-    
