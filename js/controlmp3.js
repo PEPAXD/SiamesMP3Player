@@ -1,3 +1,4 @@
+
     const player = {
         mysong: document.getElementById("mysong"),
         songCountButton: document.getElementById("songCount"),
@@ -29,19 +30,14 @@
         likeMusic: [],
     };
 
-    // VolMax
     player.mysong.volume = 1.0;
     player.volumeControl.value = 1.0;
     document.documentElement.style.setProperty('--volume', '100%');
     updateVolumeIcon();
     
-    // Buttons
-    const totalSongs = allMusic.length;
-    
-    // callLoadSong
+    const totalSongs = allMusic.length; 
     loadSong(state.currentSongIndex);
     
-    // clickEvents
     player.playButton.addEventListener("click", togglePlayPause);
     player.nextButton.addEventListener("click", playNextSong);
     player.prevButton.addEventListener("click", playPrevSong);
@@ -55,7 +51,6 @@
     player.mysong.addEventListener('ended', handleSongEnded);
     player.mysong.addEventListener('timeupdate', handleTimeUpdate);
 
-    // SongList
     player.menuButton.addEventListener("click", () => {
         player.currentInfo.classList.toggle("expanded");
         updatePlaylist();
@@ -86,7 +81,6 @@
                 pElement.classList.add("active");
             }
     
-            // Agrega el evento de clic a cada elemento
             pElement.addEventListener("click", () => {
                 state.currentSongIndex = index;
                 loadSong(state.currentSongIndex);
@@ -94,7 +88,6 @@
                 updatePlaylist();
             });
     
-            // Agrega un corazón si la canción está en la lista de "likeMusic"
             if (state.likeMusic.some(likedSong => likedSong.src === song.src)) {
                 const heartIcon = document.createElement("i");
                 heartIcon.classList.add("fa-solid", "fa-heart");
@@ -104,7 +97,6 @@
             menuSong.appendChild(pElement);
         });
     
-        // Luego de crear los elementos y los eventos de clic, actualiza el desplazamiento
         if (state.currentSongIndex >= 0) {
             const activeElement = menuSong.querySelector(".element.active");
             if (activeElement) {
@@ -113,8 +105,6 @@
             }
         }
     }
-    
-    
     
     function toggleButtonState(button) {
         button.classList.toggle('active');
@@ -284,7 +274,7 @@
         document.documentElement.style.setProperty('--volume', '0%');
         updateVolumeIcon();
     }
-    
+
     function unmuteSong() {
         const savedVolume = player.volumeControl.getAttribute("data-css");
         player.mysong.volume = savedVolume;
