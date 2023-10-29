@@ -37,8 +37,11 @@ The music player is part of a website called SIAMES.mp3.
 
 ## Website Structure
 1. `index.html`: Homepage.
-2. CSS files: `/CSS` directoryStyle.
-3. JavaScript files: `/JS` directoryInteractive.
+2. `/CSS` directoryStyle.
+3. `/JS` directoryInteractive.
+4. `/DiscArt` arrayImgSongs.
+5. `/songs` arraySongs.
+6. `/img` homeImg.
 
 ## Developed
 
